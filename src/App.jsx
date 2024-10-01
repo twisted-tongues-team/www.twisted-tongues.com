@@ -40,16 +40,14 @@ export function About() {
     <>
       {MenuOnPage("about")}
       <Header as="h1" textAlign="center">
-        {" "}
-        About{" "}
+        About
       </Header>
       <Container text>
         <Header as="h2"> What is it? </Header>
         Twisted Tongues is a web application for documenting and glossing texts
-        in multiple languages. As an online database, it excels in
-        collaboration, making the entered data immediately available to other
-        researchers on the project. It provides various features:
+        in multiple languages. It provides various features:
         <ul>
+          <li>Online data storage, convenient for collaborative data entry.</li>
           <li>Automatic construction of concordance from glosses.</li>
           <li>Easy export to latex (tipa) or tab separated tables.</li>
           <li>Mass find/replace across the project.</li>
