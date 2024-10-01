@@ -5,8 +5,8 @@ import { TwistedTonguesLogo } from "./svgs";
 
 function MenuOnPage(page) {
   const items = [
-    { key: "main", name: "Home", href: "/" },
-    { key: "about", name: "About", href: "/about" },
+    { key: "main", name: "Home", href: "." },
+    { key: "about", name: "About", href: "about" },
   ];
 
   return (
