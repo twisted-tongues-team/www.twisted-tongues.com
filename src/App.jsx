@@ -26,7 +26,7 @@ export function Main() {
         Twisted Tongues
       </Header>
       <Container textAlign="center">
-				<Button icon labelPosition="right" as="a" href="https://twisted-tongues-beta.appspot.com/">
+				<Button icon labelPosition="right" as="a" href="https://app.twisted-tongues.com/">
 					Open
 					<Icon name="right arrow" />
 				</Button>
