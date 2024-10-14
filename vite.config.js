@@ -19,7 +19,7 @@ export default defineConfig({
        enforce: 'pre',
        transform(code, id) {
          if (/\.md$/.test(id)) {
-           return `export default \`${md.render(code)}\`;`;
+           return "export default " + JSON.stringify(md.render(code)) + ';';
          }
          return null;
        },
