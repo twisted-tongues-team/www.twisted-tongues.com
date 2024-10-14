@@ -38,6 +38,8 @@
 
 [5.1.2 Search sensitive to diacritics, or not](#5.1.2-search-sensitive-to-diacritics,-or-not)
 
+[5.1.3 Searching ungrammatical and infelicitous sentences](#5.1.3-searching-ungrammatical-and-infelicitous-sentences)
+
 [5.2 Search by track name](#5.2-search-by-track-name)
 
 [5.3 Search multiple tracks](#5.3-search-multiple-tracks)
@@ -74,7 +76,7 @@ Projects are sets of passages associated with a single research project. It is r
 Figure 2\. Projects tab.
 ![](images/image9.png)
 
-Upon opening a project (Figure 3), a user will see a Dictionary and Passages buttons in the middle of the page, useful for browsing data, as well as a menu across the top of the screen, including “Dictionary, Word Search, Passages,” and “Templates” tabs (the latter is only present for “writers” (editors) of the project). Each of these tabs is now discussed in turn, from right to left.
+Upon opening a project (Figure 3), a user will see a Dictionary and Passages buttons in the middle of the page, useful for browsing data, as well as a menu across the top of the screen, including “Dictionary, Word Search, Passages,” and “Templates” tabs (the latter is only present for “writers” (editors) of the project). Each of these tabs is discussed in turn, beginning in section 3.
 
 Figure 3\. Menu from opening a project.
 ![](images/image19.png)
@@ -90,7 +92,7 @@ Figure 4\. “Add project” pop-up window.
 
 ## 3 Templates {#3-templates}
 
-The “Templates” tab allows a user to create a template, or multiple templates, for data entry, to be used in data entry in the Passages tab (see section 4). 
+The “Templates” tab allows a user to create a template, or multiple templates, for data entry, to be used in data entry in the Passages tab (see section 4). The use of templates is highly recommended in order to maintain consistency in track names and types across passages within a project.
 
 ### 3.1 Adding a template {#3.1-adding-a-template}
 
@@ -195,12 +197,16 @@ Figure 18\. Word Search.
 
 The second blue “toggle” button at the top of the Word Search page determines whether the search is sensitive to diacritics in the search string. In the diacritic sensitive search, typing “a” into the search bar will return all sentences containing an \[a\] with no diacritic in the chosen track. In the diacritic insensitive search, typing “a” into the search bar will return all sentences containing an \[a\] with any number of diacritics in the chosen track, including \[á, à, â, a\], etc.
 
+#### 5.1.3 Searching ungrammatical and infelicitous sentences {#5.1.3-searching-ungrammatical-and-infelicitous-sentences}
+
+Sentences in a passage can be marked (by clicking the appropriate checkbox) as ungrammatical (in which case the sentence background turns red) or infelicitous (in which case the sentence background turns yellow). Ungrammatical sentences are exported with an initial asterisk and infelicitious ones with an initial hashtag. In the Word Search tab, if you would like to search only grammatical, only felicitious, only ungrammatical, or only infelicitous sentences, the appropriate gray box above the search results can be selected; the default is that all sentences, including ungrammatical and infelicitous ones, will appear in search results.
+
 ### 5.2 Search by track name {#5.2-search-by-track-name}
 
 When searching, users must choose a track name from the dropdown menu (Figure 19). All track names from all passages should be present in the drop-down menu. If two tracks share very similar names, but not the same name, both will appear in the drop-down menu and must be searched independently. For this reason, users are recommended to use templates to define track names, rather than creating new track names for each passage.
 
 Figure 19\. Drop-down menu.  
-![][image19]
+![](images/image1.png)
 
 ### 5.3 Search multiple tracks {#5.3-search-multiple-tracks}
 
@@ -260,4 +266,4 @@ Readers are people who can view but not edit a project. Readers can view and exp
 
 ## 8 Questions? {#8-questions?}
 
-If you have questions about the site, or if something is not working as it should, please email both [hsande@berkeley.edu](mailto:hsande@berkeley.edu) and [sarum90@gmail.com](mailto:sarum90@gmail.com).
+If you have questions about the site, or if something is not working as it should, please email [twisted-tongues-team@googlegroups.com](mailto:twisted-tongues-team@googlegroups.com).
