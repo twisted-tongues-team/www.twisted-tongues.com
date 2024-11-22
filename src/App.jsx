@@ -4,12 +4,14 @@ import { Button, Icon, Container, Header, Menu } from "semantic-ui-react";
 import { TwistedTonguesLogo } from "./svgs";
 import AboutRenderedHTML from "./about.md"
 import ManualRenderedHTML from "./manual.md"
+import ReleasesJSON from "./releases.ndjson"
 
 function MenuOnPage(page) {
   const items = [
     { key: "main", name: "Home", href: "." },
     { key: "about", name: "About", href: "about" },
     { key: "manual", name: "Manual", href: "manual" },
+    { key: "releases", name: "Releases", href: "releases" },
   ];
 
   return (
@@ -62,6 +64,44 @@ export function Manual() {
       </Header>
       <Container text>
         <div dangerouslySetInnerHTML={{ __html: ManualRenderedHTML }} />
+      </Container>
+    </>
+  );
+}
+
+export function Releases() {
+  const releases = Array.from(ReleasesJSON);
+  releases.reverse();
+  return (
+    <>
+      {MenuOnPage("releases")}
+      <Header as="h1" textAlign="center">
+        Upcoming
+      </Header>
+      <Container text>
+        Working on a rewrite of TIPA Rendering.
+        
+        Specific improvements:
+        <ul>
+          <li>Improved cases with multiple diacritics (e.g. nasalization + tone markings)</li>
+          <li>Expanded support for almost everything in tipaman</li>
+          <li>Bufixes around certain replacements with <code>g</code>/<code>!</code>/<code>|</code></li>
+        </ul>
+      </Container>
+      <Header as="h1" textAlign="center">
+        Past Releases
+      </Header>
+      <Container text>
+            {
+              releases.map((r, i) => {
+                return <div key={i} id={r.tag} className="release">
+                  <h3>{r.tag}</h3>
+                  Date: {r.date}
+                  <br />
+                  {r.description}
+                </div>;
+              })
+            }
       </Container>
     </>
   );

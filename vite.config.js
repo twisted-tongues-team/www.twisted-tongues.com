@@ -24,14 +24,25 @@ export default defineConfig({
          return null;
        },
      },
+    {
+       name: 'ndjson-loader',
+       enforce: 'pre',
+       transform(code, id) {
+         if (/\.ndjson$/.test(id)) {
+           return "export default [\n" + code.split('\n').map(x => '  ' + x.trim()).filter(x => x.length > 0).join(',\n') + '\n];';
+         }
+         return null;
+       },
+     },
   ],
   build: {
-    sourcemapExclude: [/\.md$/], // exclude Markdown files from sourcemaps
+    sourcemapExclude: [/\.md$/, /\.ndjson$/], // exclude Markdown and NDJSON files from sourcemaps
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
         about: resolve(__dirname, "about.html"),
         manual: resolve(__dirname, "manual.html"),
+        releases: resolve(__dirname, "releases.html"),
       },
       transform(code, id) {
          if (/\.md$/.test(id)) {
