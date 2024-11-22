@@ -1,3 +1,10 @@
 .ui.text.container img {
   max-width: 100%;
 }
+
+.release {
+  margin: 10px;
+  padding: 5px;
+  border: solid 1px;
+  border-radius: 5px;
+}
