@@ -27,15 +27,14 @@ jobs:
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const fs = require('fs').promises;
-            const data = { date: inputs.date, tag: inputs.tag, description: inputs.description };
-            const jsonData = JSON.stringify(data) + '\n';
-            await fs.appendFile('src/releases.ndjson', jsonData);
-        inputs:
           tag: ${{ inputs.tag }}
           date: ${{ inputs.date }}
           description: ${{ inputs.description }}
+          script: |
+            const fs = require('fs').promises;
+            const data = { date: date, tag: tag, description: description };
+            const jsonData = JSON.stringify(data) + '\n';
+            await fs.appendFile('src/releases.ndjson', jsonData);
 
       - name: Commit and push changes
         run: |
