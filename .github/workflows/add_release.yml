@@ -43,9 +43,9 @@ jobs:
           git push origin main
 
       - name: Trigger pull action
-				env:
-					GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-					GITHUB_REPOSITORY: ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           curl -X POST \
           https://api.github.com/repos/${GITHUB_REPOSITORY}/dispatches \
