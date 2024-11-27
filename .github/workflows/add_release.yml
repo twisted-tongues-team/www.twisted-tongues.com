@@ -41,3 +41,12 @@ jobs:
           git add src/releases.ndjson
           git commit -m "(GITHUB ACTION) add release"
           git push origin main
+
+      - name: Trigger pull action
+        run: |
+          curl -X POST \
+          https://api.github.com/repos/${GITHUB_REPOSITORY}/dispatches \
+          -H 'Accept: application/vnd.github.v3+json' \
+          -H 'Authorization: Bearer ${GITHUB_TOKEN}' \
+          -H 'Content-Type: application/json' \
+          -d '{"event_type":"push","client_payload":{"ref":"refs/heads/main"}}'
