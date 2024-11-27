@@ -1,0 +1,46 @@
+name: Add release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: The tag for the release (usually YYYYMMDD, but any unique string)
+        required: true
+      date:
+        description: The date of the release (YYYY-MM-DD)
+        required: true
+      description:
+        description: The description of the release, what was fixed / added?
+        required: true
+
+jobs:
+  append-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
+
+      - name: Append JSON data
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs').promises;
+            const data = { date: inputs.date, tag: inputs.tag, description: inputs.description };
+            const jsonData = JSON.stringify(data) + '\n';
+            await fs.appendFile('src/releases.ndjson', jsonData);
+        inputs:
+          tag: ${{ inputs.tag }}
+          date: ${{ inputs.date }}
+          description: ${{ inputs.description }}
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email '<>'
+          git add src/releases.ndjson
+          git commit -m "(GITHUB ACTION) add release"
+          git push origin main
