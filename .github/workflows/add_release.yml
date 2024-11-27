@@ -27,12 +27,9 @@ jobs:
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ inputs.tag }}
-          date: ${{ inputs.date }}
-          description: ${{ inputs.description }}
           script: |
             const fs = require('fs').promises;
-            const data = { date: date, tag: tag, description: description };
+            const data = { date: github.context.inputs.date, tag: github.context.inputs.tag, description: github.context.inputs.description };
             const jsonData = JSON.stringify(data) + '\n';
             await fs.appendFile('src/releases.ndjson', jsonData);
 
