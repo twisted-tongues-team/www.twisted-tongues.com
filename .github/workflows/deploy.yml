@@ -86,7 +86,7 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && always()
 
     steps:
       - name: Deploy to GitHub Pages
