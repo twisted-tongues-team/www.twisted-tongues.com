@@ -59,6 +59,7 @@ jobs:
   build:
     name: Build
     needs: add-release
+    if: always()
     runs-on: ubuntu-latest
 
     steps:
