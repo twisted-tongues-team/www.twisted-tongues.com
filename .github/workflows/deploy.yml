@@ -30,6 +30,8 @@ jobs:
   add-release:
     runs-on: ubuntu-latest
     if: (github.event_name == 'workflow_dispatch')
+    outputs:
+      ref: ${{ steps.commit_and_push.outputs.ref }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -49,6 +51,7 @@ jobs:
             await fs.appendFile('src/releases.ndjson', jsonData);
 
       - name: Commit and push changes
+        id: commit_and_push
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email '<>'
