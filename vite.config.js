@@ -42,6 +42,7 @@ export default defineConfig({
         main: resolve(__dirname, "index.html"),
         about: resolve(__dirname, "about.html"),
         manual: resolve(__dirname, "manual.html"),
+        manualFr: resolve(__dirname, "manual-fr.html"),
         releases: resolve(__dirname, "releases.html"),
       },
       transform(code, id) {
