@@ -4,14 +4,16 @@ import { Button, Icon, Container, Header, Menu } from "semantic-ui-react";
 import { TwistedTonguesLogo } from "./svgs";
 import AboutRenderedHTML from "./about.md"
 import ManualRenderedHTML from "./manual.md"
+import ManualFrRenderedHTML from "./manual.fr.md";
 import ReleasesJSON from "./releases.ndjson"
 
-function MenuOnPage(page) {
+function MenuOnPage(page, extraItems = []) {
   const items = [
     { key: "main", name: "Home", href: "." },
     { key: "about", name: "About", href: "about" },
     { key: "manual", name: "Manual", href: "manual" },
     { key: "releases", name: "Releases", href: "releases" },
+    ...extraItems,
   ];
 
   return (
@@ -58,12 +60,30 @@ export function About() {
 export function Manual() {
   return (
     <>
-      {MenuOnPage("manual")}
+      {MenuOnPage("manual", [
+        { key: "fr", name: "Français", href: "manual-fr", position: "right" },
+      ])}
       <Header as="h1" textAlign="center">
         Manual
       </Header>
       <Container text>
         <div dangerouslySetInnerHTML={{ __html: ManualRenderedHTML }} />
+      </Container>
+    </>
+  );
+}
+
+export function ManualFr() {
+  return (
+    <>
+      {MenuOnPage("manual", [
+        { key: "en", name: "English", href: "manual", position: "right" },
+      ])}
+      <Header as="h1" textAlign="center">
+        Manuel
+      </Header>
+      <Container text>
+        <div dangerouslySetInnerHTML={{ __html: ManualFrRenderedHTML }} />
       </Container>
     </>
   );
