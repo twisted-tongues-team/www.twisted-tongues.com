@@ -2,3 +2,4 @@
 {"date":"2024-10-12","tag":"20241012","description":"Rewrote server in python 3 (python 2 was deprecated). Login flow rewritten as well as project creation / sharing."}
 {"date":"2024-12-05","tag":"20241205","description":"Bugfix: you can now open links without being logged in (prompts you to login, then forwards you to the original link)"}
 {"date":"2025-02-04","tag":"20250204","description":"Fixed `Add Passage` bug (\"Already Querying!\")"}
+{"date":"2026-07-26","tag":"20260726","description":"New projects are pre-loaded with a Default template (IPA, Gloss, Translation, Notes)"}
