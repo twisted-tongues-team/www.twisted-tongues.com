@@ -25,8 +25,7 @@ Who has access to the data?
 ---------------------------
 
 The data of a given project is only accessible by other users you have
-explicitly added to the project (collaborators are added by e-mail, and
-receive an e-mail notification with a link to the project).  Database
+explicitly added to the project (collaborators are added by e-mail).  Database
 administrators will only access data during maintenance operations.
 
 What technologies are used?
