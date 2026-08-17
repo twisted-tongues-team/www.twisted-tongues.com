@@ -96,19 +96,6 @@ export function Releases() {
     <>
       {MenuOnPage("releases")}
       <Header as="h1" textAlign="center">
-        Upcoming
-      </Header>
-      <Container text>
-        Working on a rewrite of TIPA Rendering.
-        
-        Specific improvements:
-        <ul>
-          <li>Improved cases with multiple diacritics (e.g. nasalization + tone markings)</li>
-          <li>Expanded support for almost everything in tipaman</li>
-          <li>Bufixes around certain replacements with <code>g</code>/<code>!</code>/<code>|</code></li>
-        </ul>
-      </Container>
-      <Header as="h1" textAlign="center">
         Past Releases
       </Header>
       <Container text>

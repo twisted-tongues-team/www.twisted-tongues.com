@@ -38,5 +38,8 @@ What technologies are used?
   platform.
 - Periodic backups are taken and placed in Google cloud storage or Amazon web
   services S3.
-- As features are added, additional Amazon Web Services (AWS) and Google Cloud
-  platform (GCP) products may be used.
+- DNS for twisted-tongues.com is managed by Cloudflare. Cloudflare Email
+  Service sends transactional e-mail (such as project invite
+  notifications).
+- As features are added, additional Amazon Web Services (AWS), Google Cloud
+  platform (GCP), and Cloudflare products may be used.
