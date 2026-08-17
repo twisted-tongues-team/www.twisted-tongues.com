@@ -25,7 +25,8 @@ Who has access to the data?
 ---------------------------
 
 The data of a given project is only accessible by other users you have
-explicitly added to the project (collaborators are added by e-mail).  Database
+explicitly added to the project (collaborators are added by e-mail, and
+receive an e-mail notification with a link to the project).  Database
 administrators will only access data during maintenance operations.
 
 What technologies are used?
@@ -38,5 +39,9 @@ What technologies are used?
   platform.
 - Periodic backups are taken and placed in Google cloud storage or Amazon web
   services S3.
-- As features are added, additional Amazon Web Services (AWS) and Google Cloud
-  platform (GCP) products may be used.
+- DNS for twisted-tongues.com is managed by Cloudflare. Cloudflare Email
+  Service sends transactional e-mail (such as project invite
+  notifications), and Cloudflare Email Routing forwards mail sent to
+  support@twisted-tongues.com.
+- As features are added, additional Amazon Web Services (AWS), Google Cloud
+  platform (GCP), and Cloudflare products may be used.
