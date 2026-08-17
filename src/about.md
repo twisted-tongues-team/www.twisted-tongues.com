@@ -40,7 +40,6 @@ What technologies are used?
   services S3.
 - DNS for twisted-tongues.com is managed by Cloudflare. Cloudflare Email
   Service sends transactional e-mail (such as project invite
-  notifications), and Cloudflare Email Routing forwards mail sent to
-  support@twisted-tongues.com.
+  notifications).
 - As features are added, additional Amazon Web Services (AWS), Google Cloud
   platform (GCP), and Cloudflare products may be used.
