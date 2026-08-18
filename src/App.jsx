@@ -2,10 +2,11 @@ import "./App.css";
 import "semantic-ui-css/semantic.min.css";
 import { Button, Icon, Container, Header, Menu } from "semantic-ui-react";
 import { TwistedTonguesLogo } from "./svgs";
-import AboutRenderedHTML from "./about.md"
-import ManualRenderedHTML from "./manual.md"
+import AboutRenderedHTML from "./about.md";
+import ManualRenderedHTML from "./manual.md";
 import ManualFrRenderedHTML from "./manual.fr.md";
-import ReleasesJSON from "./releases.ndjson"
+import ReleasesJSON from "./releases.ndjson";
+import { MarkdownWithLightbox } from "./figure-lightbox";
 
 function MenuOnPage(page, extraItems = []) {
   const items = [
@@ -32,13 +33,20 @@ export function Main() {
         <br />
         Twisted Tongues
       </Header>
-       <Header as="h4" textAlign="center">An online database management tool for linguistic fieldworkers </Header>
+      <Header as="h4" textAlign="center">
+        An online database management tool for linguistic fieldworkers{" "}
+      </Header>
       <Container textAlign="center">
-				<Button icon labelPosition="right" as="a" href="https://app.twisted-tongues.com/">
-					Open
-					<Icon name="right arrow" />
-				</Button>
-			</Container>
+        <Button
+          icon
+          labelPosition="right"
+          as="a"
+          href="https://app.twisted-tongues.com/"
+        >
+          Open
+          <Icon name="right arrow" />
+        </Button>
+      </Container>
     </>
   );
 }
@@ -51,7 +59,7 @@ export function About() {
         About
       </Header>
       <Container text>
-        <div dangerouslySetInnerHTML={{ __html: AboutRenderedHTML }} />
+        <MarkdownWithLightbox html={AboutRenderedHTML} />
       </Container>
     </>
   );
@@ -67,7 +75,7 @@ export function Manual() {
         Manual
       </Header>
       <Container text>
-        <div dangerouslySetInnerHTML={{ __html: ManualRenderedHTML }} />
+        <MarkdownWithLightbox html={ManualRenderedHTML} />
       </Container>
     </>
   );
@@ -83,7 +91,7 @@ export function ManualFr() {
         Manuel
       </Header>
       <Container text>
-        <div dangerouslySetInnerHTML={{ __html: ManualFrRenderedHTML }} />
+        <MarkdownWithLightbox html={ManualFrRenderedHTML} />
       </Container>
     </>
   );
@@ -99,16 +107,16 @@ export function Releases() {
         Past Releases
       </Header>
       <Container text>
-            {
-              releases.map((r, i) => {
-                return <div key={i} id={r.tag} className="release">
-                  <h3>{r.tag}</h3>
-                  Date: {r.date}
-                  <br />
-                  {r.description}
-                </div>;
-              })
-            }
+        {releases.map((r, i) => {
+          return (
+            <div key={i} id={r.tag} className="release">
+              <h3>{r.tag}</h3>
+              Date: {r.date}
+              <br />
+              {r.description}
+            </div>
+          );
+        })}
       </Container>
     </>
   );
