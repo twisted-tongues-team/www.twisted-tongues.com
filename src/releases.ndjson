@@ -4,3 +4,4 @@
 {"date":"2025-02-04","tag":"20250204","description":"Fixed `Add Passage` bug (\"Already Querying!\")"}
 {"date":"2026-07-26","tag":"20260726","description":"New projects are pre-loaded with a Default template (IPA, Gloss, Translation, Notes)"}
 {"date":"2026-08-17","tag":"20260817","description":"Email notifications for project invites"}
+{"date":"2026-08-19","tag":"20260819","description":"Minor improvements while preparing for a database backend migration: live updates recover automatically after a dropped connection, cloned projects keep their templates, local projects get a Templates page, and assorted fixes to dialogs and error handling."}
