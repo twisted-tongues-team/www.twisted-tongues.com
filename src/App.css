@@ -46,3 +46,306 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/* ---- Export format page ------------------------------------------------ */
+
+/* The format's example lines are long by nature (a whole document on one
+   line); let them scroll rather than reflow into soup. */
+.ui.text.container pre {
+  background: #f7f8fa;
+  border: 1px solid #e2e5ea;
+  border-left: 3px solid #b8c0cc;
+  border-radius: 4px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+
+.ui.text.container :not(pre) > code {
+  background: #f3f4f7;
+  border: 1px solid #e6e8ec;
+  border-radius: 3px;
+  padding: 0 4px;
+  font-size: 0.92em;
+}
+
+/* Downloads: the schema, the Python reader, the TypeScript types. */
+.toolkit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.toolkit-card {
+  flex: 1 1 190px;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px 12px;
+  border: 1px solid #dfe2e8;
+  border-radius: 6px;
+  background: #fff;
+  color: inherit;
+  transition: border-color 120ms, box-shadow 120ms, transform 120ms;
+}
+
+.toolkit-card:hover {
+  color: inherit;
+  border-color: #6ea8d8;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.toolkit-title {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.toolkit-name {
+  font-family: monospace;
+  font-size: 0.8em;
+  color: #7c8494;
+  word-break: break-all;
+}
+
+.toolkit-blurb {
+  flex: 1;
+  margin: 8px 0 10px;
+  font-size: 0.88em;
+  line-height: 1.45;
+  color: #4a5162;
+}
+
+.toolkit-download {
+  font-size: 0.85em;
+  font-weight: 700;
+  color: #3d7ab5;
+}
+
+.toolkit-download::after {
+  content: " ↓";
+}
+
+/* ---- Schema explorer --------------------------------------------------- */
+
+.schema-explorer {
+  margin: 20px 0 40px;
+  border: 1px solid #dfe2e8;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.schema-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #f2f4f7;
+  border-bottom: 1px solid #dfe2e8;
+}
+
+.schema-toolbar-title {
+  font-weight: 700;
+  font-size: 0.95em;
+}
+
+.schema-toolbar-spacer {
+  flex: 1;
+}
+
+.schema-toolbar-button {
+  border: 1px solid #d3d8e0;
+  background: #fff;
+  border-radius: 4px;
+  padding: 3px 9px;
+  font-size: 0.78em;
+  color: #4a5162;
+  cursor: pointer;
+}
+
+.schema-toolbar-button:hover {
+  border-color: #6ea8d8;
+  color: #2b5f92;
+}
+
+.schema-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 9px 14px;
+  border-bottom: 1px solid #eceff3;
+  font-size: 0.85em;
+}
+
+.schema-legend-hint {
+  color: #8b93a3;
+  font-size: 0.9em;
+}
+
+.schema-root {
+  padding: 4px 0 10px;
+  border-bottom: 1px solid #eceff3;
+}
+
+.schema-root:last-of-type {
+  border-bottom: none;
+}
+
+.schema-root-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 14px 2px;
+}
+
+.schema-root-title {
+  font-weight: 700;
+  font-size: 0.95em;
+}
+
+.schema-root-blurb {
+  color: #8b93a3;
+  font-size: 0.85em;
+}
+
+.schema-node {
+  padding-left: 0;
+}
+
+.schema-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 3px 14px 3px 0;
+  border-radius: 3px;
+}
+
+.schema-clickable {
+  cursor: pointer;
+}
+
+.schema-clickable:hover {
+  background: #f6f8fb;
+}
+
+.schema-caret {
+  display: inline-block;
+  width: 12px;
+  color: #9aa2b1;
+  font-size: 0.8em;
+  transition: transform 100ms;
+}
+
+.schema-caret.schema-open {
+  transform: rotate(90deg);
+}
+
+.schema-caret-empty {
+  color: #cfd4dd;
+}
+
+.schema-name {
+  font-family: monospace;
+  font-size: 0.88em;
+  font-weight: 700;
+  color: #2a3140;
+}
+
+.schema-name-root {
+  color: #2b5f92;
+}
+
+.schema-name-meta {
+  font-style: italic;
+  font-weight: 400;
+  color: #7c8494;
+}
+
+.schema-chip {
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 1px 6px;
+  border-radius: 9px;
+  white-space: nowrap;
+}
+
+.schema-chip-blue { background: #e3eefb; color: #285f97; }
+.schema-chip-orange { background: #fdeedd; color: #92551a; }
+.schema-chip-purple { background: #eee7fb; color: #593a91; }
+.schema-chip-teal { background: #ddf1f0; color: #1c6660; }
+.schema-chip-green { background: #e2f3e2; color: #256b2b; }
+.schema-chip-pink { background: #fbe6ee; color: #94305a; }
+.schema-chip-grey { background: #eef0f3; color: #5c6474; font-weight: 400; font-family: monospace; }
+
+.schema-required {
+  font-size: 0.7em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #a8434f;
+}
+
+.schema-ref {
+  font-family: monospace;
+  font-size: 0.74em;
+  color: #8b93a3;
+}
+
+.schema-ref::before {
+  content: "→ ";
+}
+
+.schema-description {
+  margin: 0 14px 6px 46px;
+  font-size: 0.84em;
+  line-height: 1.45;
+  color: #59606f;
+}
+
+.schema-children {
+  margin-left: 18px;
+  padding-left: 10px;
+  border-left: 1px solid #e6e9ee;
+}
+
+.schema-node > .schema-row {
+  padding-left: 14px;
+}
+
+.schema-children .schema-row {
+  padding-left: 0;
+}
+
+.schema-conditional {
+  margin: 6px 0;
+}
+
+.schema-condition-label {
+  font-size: 0.76em;
+  font-weight: 700;
+  color: #7a5b1f;
+  background: #fdf5e3;
+  border-radius: 3px;
+  padding: 1px 7px;
+  display: inline-block;
+  margin-bottom: 2px;
+}
+
+.schema-footnote {
+  padding: 10px 14px;
+  margin: 0;
+  background: #f9fafb;
+  border-top: 1px solid #eceff3;
+  font-size: 0.82em;
+  color: #8b93a3;
+}
+
+.schema-footnote code {
+  font-size: 0.95em;
+  word-break: break-all;
+}
