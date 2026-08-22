@@ -57,12 +57,6 @@ export default defineConfig({
         exportFormat: resolve(__dirname, "dev/export-format.html"),
         releases: resolve(__dirname, "releases.html"),
       },
-      transform(code, id) {
-        if (/\.md$/.test(id)) {
-          return md.render(code);
-        }
-        return code;
-      },
     },
   },
 });

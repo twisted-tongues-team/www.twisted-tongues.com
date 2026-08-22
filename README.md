@@ -26,6 +26,26 @@ This is approximately the command line workflow I use:
   send out for review or merge. The website is automatically deployed once a
   change is merged to `main` using github actions.
 
+## Build: pages are prerendered
+
+`npm run build` runs three steps: Vite's client build, a second Vite build of
+`src/entry-server.jsx` for node, and `scripts/prerender.mjs`, which renders
+every page to HTML and bakes it into the shipped files. The result is still
+static files — nothing runs per request — but a visitor (or a crawler that
+does not execute JavaScript, which is most of the ones that feed language
+models) gets the finished page instead of an empty `<div id="root">`. React
+then hydrates that markup rather than replacing it.
+
+The same script writes `dist/sitemap.xml` and stamps each page with a
+`<link rel="canonical">` under `https://www.twisted-tongues.com` (the apex
+domain 301s there). `public/robots.txt` points at the sitemap and welcomes
+search and assistant crawlers alike.
+
+**Adding a page** means adding it in three places: an `.html` file, an entry
+in `vite.config.js`, and an entry in `src/entry-server.jsx`. Forget the last
+and the build fails naming the page, rather than shipping it blank and
+missing from the sitemap.
+
 ## The `/dev` pages (`/schemas`, `/tt-export`)
 
 The Manual is for people using the app; `/dev` is for people writing code
