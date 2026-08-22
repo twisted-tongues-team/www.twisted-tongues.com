@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "tt-export:sync": "node scripts/sync-tt-export.mjs",
+    "tt-export:check": "node scripts/sync-tt-export.mjs --check",
     "lint": "eslint .",
     "lintfix": "eslint . --fix",
     "preview": "vite preview"

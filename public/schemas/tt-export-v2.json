@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://twisted-tongues.com/schemas/tt-export-v2.json",
+  "title": "tt_export line",
+  "description": "One line of a Twisted Tongues project export. The file is UTF-8 ndjson: the first non-empty line matches $defs/header, every other non-empty line matches $defs/document. Readers should ignore lines and fields they do not recognize; fields may be added without a version bump, while any change a strict reader of this schema would reject bumps `version`. See docs/design/save-load-snapshot.md.",
+  "oneOf": [
+    {"$ref": "#/$defs/header"},
+    {"$ref": "#/$defs/document"}
+  ],
+  "$defs": {
+    "header": {
+      "type": "object",
+      "required": ["doctype", "version", "name", "description"],
+      "properties": {
+        "doctype": {"const": "tt_export"},
+        "version": {"type": "integer", "minimum": 2},
+        "name": {"type": "string", "description": "Project name."},
+        "description": {"type": "string", "description": "Project description."},
+        "exported_at": {
+          "type": "number",
+          "description": "Seconds since the Unix epoch, at export time. Optional."
+        }
+      }
+    },
+    "document": {
+      "type": "object",
+      "required": ["collection", "doc", "internal"],
+      "properties": {
+        "collection": {
+          "enum": ["meta", "passages", "sentences"],
+          "description": "meta holds project-level documents such as track templates; passages and sentences hold the linguistic data. A sentence's id is prefixed by its passage's id."
+        },
+        "doc": {"$ref": "#/$defs/envelope"},
+        "internal": {
+          "type": "object",
+          "description": "The app's own document state, 1:1 with its database, and the only thing the app reads on import. Its shape is deliberately UNSPECIFIED: it may change without a version bump and may drift toward `doc` over time. Nothing outside the app may depend on it — everything meant for reading is in `doc`."
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"collection": {"const": "passages"}}, "required": ["collection"]},
+          "then": {"properties": {"doc": {"properties": {"data": {"$ref": "#/$defs/passageData"}}}}}
+        },
+        {
+          "if": {"properties": {"collection": {"const": "sentences"}}, "required": ["collection"]},
+          "then": {"properties": {"doc": {"properties": {"data": {"$ref": "#/$defs/sentenceData"}}}}}
+        },
+        {
+          "if": {"properties": {"collection": {"const": "meta"}}, "required": ["collection"]},
+          "then": {"properties": {"doc": {"properties": {"data": {"$ref": "#/$defs/metaData"}}}}}
+        }
+      ]
+    },
+    "envelope": {
+      "type": "object",
+      "required": ["id", "data"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^[^_]",
+          "description": "Document id, unique within its collection. Sentence ids are '<passage id>-<10-digit counter>'."
+        },
+        "rev": {
+          "type": "string",
+          "description": "Opaque revision token of the source database at export time. Comparable for equality only; carries no ordering or structure."
+        },
+        "created_date": {"type": "number", "description": "Seconds since the Unix epoch."},
+        "modified_date": {"type": "number", "description": "Seconds since the Unix epoch."},
+        "creator": {
+          "type": "string",
+          "description": "Opaque user id: unverified approximate provenance, not identity the system vouches for."
+        },
+        "modifier": {"type": "string", "description": "Opaque user id; see creator."},
+        "imported": {
+          "type": "object",
+          "required": ["at", "by"],
+          "description": "Present when this document arrived in its project via a file import. creator/modifier upstream of an import are file-supplied and unverifiable.",
+          "properties": {
+            "at": {"type": "number", "description": "Import time, seconds since the Unix epoch."},
+            "by": {"type": "string", "description": "Opaque user id of the importer."},
+            "rev": {"type": "string", "description": "Opaque revision token of the doc in the database it was imported from."}
+          }
+        },
+        "data": {
+          "type": "object",
+          "description": "The external view of the document's payload: every string NFD-normalized Unicode, with per-collection shapes below. Every field the writer emits here is documented in this schema — undocumented internal fields live only in `internal` until deliberately promoted. Derived at export and ignored on import — a hand-edited `data` never enters a database."
+        }
+      }
+    },
+    "wordTrackConfig": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name": {"type": "string"},
+        "type": {
+          "enum": ["Text", "T2IPA"],
+          "description": "As shown in the app's template UI. T2IPA tracks are entered as TIPA notation and displayed as IPA; in this external view their values are already the display form, so most readers never need this field."
+        }
+      }
+    },
+    "sentenceTrackConfig": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {"name": {"type": "string"}}
+    },
+    "passageData": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "description": {"type": "string"},
+        "word_tracks": {"type": "array", "items": {"$ref": "#/$defs/wordTrackConfig"}},
+        "sentence_tracks": {"type": "array", "items": {"$ref": "#/$defs/sentenceTrackConfig"}},
+        "track_template": {
+          "type": "string",
+          "description": "The id of the meta template this passage was created from — the join key to the meta collection's template documents."
+        }
+      }
+    },
+    "sentenceData": {
+      "type": "object",
+      "required": ["words", "sentences"],
+      "properties": {
+        "words": {
+          "type": "array",
+          "description": "One object per word: track name -> NFD display value.",
+          "items": {"type": "object"}
+        },
+        "sentences": {
+          "type": "object",
+          "description": "Sentence-level track values, keyed by track name — e.g. this sentence's English translation and its French translation."
+        },
+        "grammatical": {"type": "boolean", "description": "The grammaticality judgment for this sentence."},
+        "infelicitous": {"type": "boolean", "description": "The felicity judgment for this sentence."}
+      }
+    },
+    "metaData": {
+      "type": "object",
+      "description": "Project-level documents. Track templates carry kind/name/tracks; a meta document of no known kind exports an empty data shell (its content is in `internal` only).",
+      "properties": {
+        "kind": {"const": "template"},
+        "name": {"type": "string"},
+        "tracks": {
+          "type": "object",
+          "properties": {
+            "word_tracks": {"type": "array", "items": {"$ref": "#/$defs/wordTrackConfig"}},
+            "sentence_tracks": {"type": "array", "items": {"$ref": "#/$defs/sentenceTrackConfig"}}
+          }
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,9 @@ lerna-debug.log*
 
 node_modules
 dist
+
+# Scratch checkout of the app repo, made by the release workflow
+.app-repo
 dist-ssr
 *.local
 
