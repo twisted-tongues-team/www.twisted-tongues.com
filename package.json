@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node scripts/prerender.mjs",
+    "tt-export:sync": "node scripts/sync-tt-export.mjs",
+    "tt-export:check": "node scripts/sync-tt-export.mjs --check",
     "lint": "eslint .",
     "lintfix": "eslint . --fix",
     "preview": "vite preview"

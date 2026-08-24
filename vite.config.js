@@ -53,13 +53,9 @@ export default defineConfig({
         about: resolve(__dirname, "about.html"),
         manual: resolve(__dirname, "manual.html"),
         manualFr: resolve(__dirname, "manual-fr.html"),
+        dev: resolve(__dirname, "dev/index.html"),
+        exportFormat: resolve(__dirname, "dev/export-format.html"),
         releases: resolve(__dirname, "releases.html"),
-      },
-      transform(code, id) {
-        if (/\.md$/.test(id)) {
-          return md.render(code);
-        }
-        return code;
       },
     },
   },

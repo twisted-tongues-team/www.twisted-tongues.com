@@ -81,6 +81,9 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
+      - name: Check the vendored export-format files
+        run: npm run tt-export:check
+
       - name: Build project
         run: npm run build
 

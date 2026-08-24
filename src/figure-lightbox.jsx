@@ -27,6 +27,15 @@ export function MarkdownWithLightbox({ html }) {
     setFigure({ src: img.src, alt: img.alt, caption });
   }, []);
 
+  // The markdown lands in the DOM after the browser has already acted on any
+  // hash in the URL, so an inbound link to #4.4-t2ipa-entry would otherwise
+  // sit at the top of the page. Do that scroll ourselves, once.
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+    document.getElementById(id)?.scrollIntoView();
+  }, [html]);
+
   useEffect(() => {
     if (!figure) return undefined;
     const onKey = (e) => {

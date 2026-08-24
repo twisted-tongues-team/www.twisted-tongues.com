@@ -10,6 +10,10 @@
 
 [2.2 Ajouter un nouveau projet](#2.2-adding-a-new-project)
 
+[2.3 Enregistrer un projet sur son ordinateur](#2.3-saving-a-project-to-your-computer)
+
+[2.4 Charger un projet depuis un fichier](#2.4-loading-a-project-from-a-file)
+
 [3 Modèles](#3-templates)
 
 [3.1 Ajouter un modèle](#3.1-adding-a-template)
@@ -73,7 +77,7 @@ Figure 1\. Page d'accueil après connexion.
 
 ### 2.1 Ouvrir un projet {#2.1-opening-a-project}
 
-Les projets sont des ensembles de passages associés à un même projet de recherche. Il est recommandé de créer un projet distinct pour chaque langue dont les données sont saisies dans TT. Les projets peuvent être consultés depuis l'onglet « Projects » (figure 2). Dans cet onglet, l'utilisateur voit la liste de tous les projets qu'il a créés, ainsi que ceux qui ont été partagés avec lui. Pour chaque projet de l'onglet « Projects », trois options sont disponibles : 1\) « Delete » (supprimer), qui supprime définitivement le projet pour tous les utilisateurs (seul le propriétaire du projet peut le faire) ; 2\) « Open » (ouvrir), qui permet de consulter le dictionnaire (« Dictionary »), la recherche de mots (« Word Search ») et les passages (« Passages ») de ce projet, et d'y saisir de nouvelles données ; et 3\) « Clone » (cloner), qui télécharge une copie complète de l'état actuel de la base de données, consultable hors ligne ou utilisable comme sauvegarde. (Un bouton « Edit » (modifier) apparaît également, mais il est actuellement désactivé : le nom et la description d'un projet ne peuvent pas être modifiés après leur création.)
+Les projets sont des ensembles de passages associés à un même projet de recherche. Il est recommandé de créer un projet distinct pour chaque langue dont les données sont saisies dans TT. Les projets peuvent être consultés depuis l'onglet « Projects » (figure 2). Dans cet onglet, l'utilisateur voit la liste de tous les projets qu'il a créés, ainsi que ceux qui ont été partagés avec lui. Pour chaque projet de l'onglet « Projects », trois options sont disponibles : 1\) « Delete » (supprimer), qui supprime définitivement le projet pour tous les utilisateurs (seul le propriétaire du projet peut le faire) ; 2\) « Open » (ouvrir), qui permet de consulter le dictionnaire (« Dictionary »), la recherche de mots (« Word Search ») et les passages (« Passages ») de ce projet, et d'y saisir de nouvelles données ; et 3\) « Clone » (cloner), qui crée une copie locale du même projet dans le navigateur utilisé. (Un bouton « Edit » (modifier) apparaît également, mais il est actuellement désactivé : le nom et la description d'un projet ne peuvent pas être modifiés après leur création.)
 
 Figure 2\. Onglet « Projects ».
 ![](images/figure_002_projects_tab.png)
@@ -91,6 +95,16 @@ Une fenêtre contextuelle apparaît (figure 4). Dans le champ « Project Name »
 
 Figure 4\. Fenêtre « Add project ».  
 ![](images/figure_004_add_project_dialog.png)
+
+### 2.3 Enregistrer un projet sur son ordinateur {#2.3-saving-a-project-to-your-computer}
+
+Tout projet peut être enregistré sur votre ordinateur sous la forme d'un fichier unique. Ouvrez le projet, puis cliquez sur « Save to Computer… » (enregistrer sur l'ordinateur), en haut à droite de la barre de menu. Le navigateur télécharge alors un fichier portant le nom du projet (par exemple « Florble fieldwork.json ») qui contient un instantané complet du projet à cet instant : passages, phrases et modèles. Toute personne qui peut ouvrir un projet peut l'enregistrer, les « readers » (lecteurs) comme les « writers » (rédacteurs).
+
+Consultez la page [export format](/dev/export-format) (en anglais) si vous souhaitez lire le fichier vous-même, plutôt que de le recharger dans TT.
+
+### 2.4 Charger un projet depuis un fichier {#2.4-loading-a-project-from-a-file}
+
+Un fichier enregistré peut être rechargé depuis l'onglet « Projects » : cliquez sur « Load from File… » (charger depuis un fichier) dans la section « Local », et TT indiquera ce qu'il a trouvé dans le fichier avant de créer quoi que ce soit. Le chargement crée toujours un nouveau projet « local » — qui réside dans le navigateur que vous utilisez — plutôt que de compléter ou de restaurer un projet sur le serveur. Les fichiers écrits par n'importe quelle version antérieure de TT se chargent également, et nous entendons faire en sorte que tout fichier écrit par TT reste chargeable, dans la mesure de nos moyens ; les plus anciens sont antérieurs aux modèles, un projet chargé à partir de l'un d'eux n'en aura donc aucun.
 
 ## 3 Modèles {#3-templates}
 

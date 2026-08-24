@@ -10,6 +10,10 @@
 
 [2.2 Adding a new project](#2.2-adding-a-new-project)
 
+[2.3 Saving a project to your computer](#2.3-saving-a-project-to-your-computer)
+
+[2.4 Loading a project from a file](#2.4-loading-a-project-from-a-file)
+
 [3 Templates](#3-templates)
 
 [3.1 Adding a template](#3.1-adding-a-template)
@@ -71,7 +75,7 @@ Figure 1\. Landing page after login.
 
 ### 2.1 Opening a project {#2.1-opening-a-project}
 
-Projects are sets of passages associated with a single research project. It is recommended that users create a different project for each distinct language for which data is entered into TT. Projects can be viewed from the “Projects” tab (Figure 2). Within the Projects tab, users will see a list of all projects they have created, as well as those that have been shared with them. For each project in the Projects tab, there are three available options: 1\) Delete, which permanently removes the project for all users (only the project owner can do this), 2\) Open, which allows the user to view the Dictionary, Word Search, and Passages for that project, and to enter new data, and 3\) Clone, which downloads a full copy of the current state of the database, which can be accessed from offline or used as a back-up. (An Edit button also appears but is currently disabled: a project's name and description cannot be changed after creation.)
+Projects are sets of passages associated with a single research project. It is recommended that users create a different project for each distinct language for which data is entered into TT. Projects can be viewed from the “Projects” tab (Figure 2). Within the Projects tab, users will see a list of all projects they have created, as well as those that have been shared with them. For each project in the Projects tab, there are three available options: 1\) Delete, which permanently removes the project for all users (only the project owner can do this), 2\) Open, which allows the user to view the Dictionary, Word Search, and Passages for that project, and to enter new data, and 3\) Clone, which makes a local copy of the same project in the browser you are using. (An Edit button also appears but is currently disabled: a project's name and description cannot be changed after creation.)
 
 Figure 2\. Projects tab.
 ![](images/figure_002_projects_tab.png)
@@ -89,6 +93,16 @@ A pop-up window will appear (Figure 4). In the “Project Name” box, the user 
 
 Figure 4\. “Add project” pop-up window.  
 ![](images/figure_004_add_project_dialog.png)
+
+### 2.3 Saving a project to your computer {#2.3-saving-a-project-to-your-computer}
+
+Any project can be saved to your own computer as a single file. Open the project and click “Save to Computer…” at the top right of the menu bar. The browser will download one file named after the project (for example, “Florble fieldwork.json”) holding a complete snapshot of the project at that moment — passages, sentences and templates. Anyone who can open a project can save it, readers as well as writers.
+
+See the [export format](/dev/export-format) page if you would like to read the file yourself, rather than load it back into TT.
+
+### 2.4 Loading a project from a file {#2.4-loading-a-project-from-a-file}
+
+A saved file can be loaded back in from the “Projects” tab: click “Load from File…” in the “Local” section, and TT will report what it found in the file before creating anything. It always loads into a new “local” project — one that lives in the browser you are using — rather than adding to or restoring a project on the server. Files written by any earlier version of TT load as well, and keeping every file TT has ever written loadable is a commitment we intend to keep, as far as we are able; the oldest of them predate templates, so a project loaded from one will have none.
 
 ## 3 Templates {#3-templates}
 

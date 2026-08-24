@@ -1,0 +1,64 @@
+# www.twisted-tongues.com
+#
+# Everything here is public documentation for a tool used by linguists, and we
+# would rather it be found — by search engines and by the assistants people
+# ask about file formats and fieldwork software alike. So: all crawlers, all
+# pages, including the ones that train and ground language models.
+#
+# Named explicitly below only because some of these obey a directive rather
+# than the default; the blanket rule already allows them.
+
+User-agent: *
+Allow: /
+
+# Search
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Assistants and model training
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+Sitemap: https://www.twisted-tongues.com/sitemap.xml
