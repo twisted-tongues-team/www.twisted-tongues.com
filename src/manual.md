@@ -98,17 +98,11 @@ Figure 4\. “Add project” pop-up window.
 
 Any project can be saved to your own computer as a single file. Open the project and click “Save to Computer…” at the top right of the menu bar. The browser will download one file named after the project (for example, “Florble fieldwork.json”) holding a complete snapshot of the project at that moment — passages, sentences and templates. Anyone who can open a project can save it, readers as well as writers.
 
-A saved file is a snapshot rather than a live link. It holds the data exactly as it stood when the file was written, and edits made in the app afterwards will not appear in a file that has already been saved. Saving is therefore worth repeating at whatever interval matters to you: at the end of a field session, before a large find-and-replace (section 5.5), or when archiving data alongside a paper or a dissertation.
-
-The file can be loaded back into TT (section 2.4), but it is also meant to be useful on its own. It is plain text in a documented, stable format called `tt_export`, so a project can be read, searched, and analyzed with ordinary tools — a script, a spreadsheet, or a statistics package — without going through TT at all, and it will remain readable if TT is not around. The [export format](/dev/export-format) page describes the format in full, and offers a formal JSON Schema along with ready-made Python and TypeScript utilities for reading these files.
+See the [export format](/dev/export-format) page if you would like to read the file yourself, rather than load it back into TT.
 
 ### 2.4 Loading a project from a file {#2.4-loading-a-project-from-a-file}
 
-A file saved with “Save to Computer…” can be loaded back into TT. Go to the “Projects” tab, and in the “Local” section click “Load from File…”. Choose the file, and the pop-up window will report what it found in it — the project name and description recorded in the file, and a count of its passages, sentences, and templates — so that the right file can be confirmed before anything is created. Click “Copy Name/Description” to reuse the name and description from the file, or type in new ones, and then click “Submit”.
-
-Loading always creates a new project rather than adding to or overwriting an existing one, and the new project is always a “local” project. Local projects live in the browser they were created in: they work offline, they are not shared with anyone, and they are not synced back to any project on the server. They are listed in the “Local” section of the “Projects” tab, underneath the projects loaded from the server. Loading a file is therefore a safe way to look inside a backup: the project it came from is untouched.
-
-Files saved by older versions of TT can still be loaded; TT recognizes them and converts them as it reads, noting in the pop-up window that it has done so. Loading such a file and saving the result is a good way to bring an old backup up to the current format. Note that files saved by those older versions did not include templates, so templates will be missing from a project restored from one.
+A saved file can be loaded back in from the “Projects” tab: click “Load from File…” in the “Local” section, and TT will report what it found in the file before creating anything. It always loads into a new “local” project — one that lives in the browser you are using — rather than adding to or restoring a project on the server. Files written by any earlier version of TT load as well, and keeping every file TT has ever written loadable is a commitment we intend to keep, as far as we are able; the oldest of them predate templates, so a project loaded from one will have none.
 
 ## 3 Templates {#3-templates}
 
