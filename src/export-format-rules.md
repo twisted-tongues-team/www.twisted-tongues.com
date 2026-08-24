@@ -18,11 +18,6 @@ Four rules:
    knowing roughly who to ask about a strange entry. They are not identity
    anyone vouches for — a file can be edited by anybody who has it.
 
-Reading is the lenient direction; writing is not. Files handed to TT's
-“Load from File…” meet a strict parser that rejects anything it does not
-recognize, and a file it refuses is refused whole rather than half-imported.
-If you generate `tt_export` files, follow the schema exactly.
-
 ## Older files {#older}
 
 Files whose first line begins `{"v":1,` were written by an earlier version of
