@@ -20,6 +20,16 @@ export interface TTExportHeader {
   description: string;
   /** Seconds since the Unix epoch, at export time. */
   exported_at?: number;
+  /**
+   * The project this file came from. Written by a server export; a file the
+   * browser wrote has no id to give.
+   */
+  project_id?: string;
+  /**
+   * An opaque cursor for the moment this snapshot was read. Hand it back to a
+   * change feed and nothing between the two is missed. Server exports only.
+   */
+  update_seq?: string;
 }
 
 /**
@@ -146,4 +156,33 @@ export interface TTExportDocumentLine {
 }
 
 /** Any parsed line of a tt_export file. */
-export type TTExportLine = TTExportHeader | TTExportDocumentLine;
+/**
+ * The last line of a signed file, vouching for every byte above it.
+ *
+ * Written by a server that holds a signing key. A file the browser wrote has
+ * none, and an unsigned file is perfectly valid — so the absence of this line
+ * is not evidence of anything. Verifying needs only the public key `kid`
+ * names.
+ */
+export interface TTExportSignature {
+  doctype: 'tt_export_sig';
+  /**
+   * The construction. `Ed25519-SHA256` means: SHA-256 over every byte above
+   * this line, then Ed25519 over the canonical JSON of
+   * `{alg, kid, project_id, exported_at, sha256}` prefixed with
+   * `tt_export_sig.v1\n`. The claims are signed with the digest, so `alg` and
+   * `kid` cannot be rewritten on a file that still verifies.
+   */
+  alg: string;
+  /** Which public key verifies this, so keys rotate without orphaning files. */
+  kid: string;
+  project_id?: string;
+  /** Seconds since the Unix epoch — the same value the header carries. */
+  exported_at?: number;
+  /** Lowercase hex SHA-256 of every byte above this line. */
+  sha256: string;
+  /** base64url, unpadded, of the Ed25519 signature. */
+  sig: string;
+}
+
+export type TTExportLine = TTExportHeader | TTExportDocumentLine | TTExportSignature;
