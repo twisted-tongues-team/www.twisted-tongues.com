@@ -199,28 +199,30 @@ Dans une piste de type « T2IPA », les données doivent être saisies sous form
 
 ### 4.5 Saisie de la ligne de glose {#4.5-gloss-line-entry}
 
-Dans toute piste de type « Text », un segment écrit entièrement en majuscules peut être exporté en petites capitales à des fins de glose, conformément aux [règles de glose de Leipzig](https://www.eva.mpg.de/lingua/pdf/Glossing-Rules.pdf). Ce comportement se règle piste par piste, au moyen de l'option « Detect small caps » de la fenêtre d'export (voir la section 4.6.3) ; il est activé au départ pour toutes les pistes sauf les pistes phonétiques, lesquelles démarrent plutôt avec l'encadrement tipa activé. Les tirets au sein d'une même cellule sont interprétés comme des frontières de morphèmes et segmentés comme tels dans le dictionnaire. Les signes égal « = » sont interprétés comme des frontières de clitiques et sont eux aussi segmentés dans le dictionnaire.
+Dans toute piste de type « Text », les majuscules sont exportées en petites capitales à des fins de glose, conformément aux [règles de glose de Leipzig](https://www.eva.mpg.de/lingua/pdf/Glossing-Rules.pdf) ; ce comportement peut être désactivé piste par piste au moment de l'export (voir la section 4.6.3). Les tirets au sein d'une même cellule sont interprétés comme des frontières de morphèmes et segmentés comme tels dans le dictionnaire. Les signes égal « = » sont interprétés comme des frontières de clitiques et sont eux aussi segmentés dans le dictionnaire.
 
 ### 4.6 Exporter des passages {#4.6-exporting-passages}
 
 Pour exporter un passage, cliquez sur « Select All » (tout sélectionner) en haut à droite du passage concerné, puis sur « Export » (exporter), juste en dessous de « Select All ». Pour exporter une ou plusieurs phrases d'un passage, cochez la case à droite des phrases à exporter, puis cliquez sur « Export ». Une fenêtre contextuelle apparaît alors (figure 17).
 
-La fenêtre demande où va votre travail plutôt que quel format de fichier vous souhaitez, car c'est à cette question que vous pouvez répondre : vous savez que vous rédigez un article, ou que vous collez dans un document partagé, et les réglages qui suivent en découlent. Le résultat apparaît dans le cadre du bas et se met à jour dès que vous modifiez quoi que ce soit au-dessus ; « Copy » (copier) le place dans le presse-papiers. Rien n'est téléchargé — il s'agit d'un export par copier-coller ; la section 2.3 traite de l'enregistrement d'un projet entier dans un fichier.
+TT propose trois types d'export : du code LaTeX, du texte mis en forme (pratique à coller dans un document ou un courriel) et du texte délimité par des tabulations (pratique à coller dans un tableur). Le choix se fait en haut de la fenêtre, et les réglages proposés en dessous dépendent du type retenu.
+
+Le résultat apparaît dans le cadre au bas de la fenêtre et se met à jour à mesure que vous modifiez les réglages situés au-dessus. « Copy » (copier) le place dans le presse-papiers ; rien n'est téléchargé. Pour enregistrer un projet entier dans un fichier, voir la section 2.3.
 
 Figure 17\. Export de phrases au format LaTeX.  
 ![](images/figure_017_sentence_export_in_latex_format.png)
 
 #### 4.6.1 Où cela va-t-il ? {#4.6.1-where-is-this-going}
 
-Trois destinations, dont découle tout le reste de la fenêtre.
+Les trois types d'export se choisissent ici, désignés par l'usage auquel ils sont destinés.
 
-* **« A LaTeX paper »** (un article LaTeX) — des exemples interlinéaires numérotés, prêts à être collés. C'est l'option qui produit des exemples de type `\begin{exe}`, avec des lignes alignées et une traduction libre.
-* **« A document »** (un document) — Google Docs, Word, Slides. Les mots restent au-dessus de leurs gloses, de sorte que l'alignement survit au collage.
-* **« A spreadsheet »** (un tableur) — Sheets ou Excel, un mot par cellule.
+* **« A LaTeX paper »** (un article LaTeX) — du code LaTeX : des exemples interlinéaires numérotés, avec des lignes alignées et une traduction libre, prêts à être collés dans un document.
+* **« A document »** (un document) — du texte mis en forme, pour Google Docs, Word, Slides ou un courriel. Les mots restent au-dessus de leurs gloses, de sorte que l'alignement survit au collage.
+* **« A spreadsheet »** (un tableur) — du texte délimité par des tabulations, un mot par cellule, pour Sheets ou Excel.
 
 #### 4.6.2 Comment cela est écrit {#4.6.2-how-it-is-written}
 
-Une section repliée intitulée « How it is written » (comment cela est écrit), dont la ligne de résumé affiche les réponses actuelles : vous voyez donc ce qui est réglé sans avoir à l'ouvrir. Ce sont des réglages que l'on détermine une fois puis que l'on laisse tels quels. Les choix proposés dépendent de la destination.
+Une section repliée intitulée « How it is written » (comment cela est écrit). Sa ligne de résumé énumère les réglages actuels, qui se lisent donc sans avoir à l'ouvrir. Les choix qu'elle propose dépendent du type d'export.
 
 Pour **un article LaTeX** :
 
@@ -253,7 +255,7 @@ Sous la section repliée, chaque piste du passage est présentée avec une case 
 Les **pistes de mots** (« Word tracks ») sont celles qui s'alignent mot à mot, et chacune porte deux réglages supplémentaires :
 
 * **`\textipa all`** (uniquement pour LaTeX en notation tipa) — écrire toute la ligne en notation tipa. Désactivé, seules les parties qui en ont besoin sont encadrées, ce qui laisse le texte ordinaire tel quel.
-* **« Detect small caps »** (détecter les petites capitales) — un segment écrit entièrement en majuscules est considéré comme une catégorie grammaticale et composé en petites capitales : `3SG`, `child.PL`, `Marcus-POSS`. Comme la règle ne retient que les segments *entièrement* en majuscules, un nom propre ordinaire n'est pas concerné. Désactivez-la pour une piste où les majuscules signifient autre chose, ou qui contient un sigle qui n'est pas une catégorie.
+* **« Detect small caps »** (détecter les petites capitales) — tout ce qui est écrit entièrement en majuscules, qu'il s'agisse d'un mot entier ou d'une partie de mot délimitée par un tiret ou un point, est considéré comme une catégorie grammaticale et composé en petites capitales : `3SG`, `child.PL`, `Marcus-POSS`. Comme la règle ne s'applique que là où les majuscules courent d'un bout à l'autre, un nom propre ordinaire n'est pas concerné. Désactivez-la pour une piste où les majuscules signifient autre chose, ou qui contient un sigle qui n'est pas une catégorie.
 
 Les **pistes de phrases** (« Sentence tracks ») figurent séparément et n'ont qu'une case à cocher. Une piste de phrase contient une seule valeur pour toute la phrase et devient la traduction libre : il n'y a donc pas d'encadrement mot à mot à choisir, ni de majuscules à détecter.
 

@@ -197,28 +197,30 @@ If using a track of the type “T2IPA”, data should be entered as code followi
 
 ### 4.5 Gloss line entry {#4.5-gloss-line-entry}
 
-In any text-type track, a segment written entirely in capital letters can be exported as small caps for glossing purposes, following the [Leipzig Glossing Conventions](https://www.eva.mpg.de/lingua/pdf/Glossing-Rules.pdf). This is controlled per track, by the “Detect small caps” switch in the export dialog (see section 4.6.3); it starts switched on for every track except the phonetic ones, which instead start with tipa wrapping on. Dashes within a single cell are interpreted as morpheme boundaries and segmented as such in the dictionary. Equals signs “=” are interpreted as clitic boundaries and are also segmented in the dictionary.
+In any text-type track, capital letters will be exported as small caps for glossing purposes, following the [Leipzig Glossing Conventions](https://www.eva.mpg.de/lingua/pdf/Glossing-Rules.pdf); this can be switched off per track when exporting (see section 4.6.3). Dashes within a single cell are interpreted as morpheme boundaries and segmented as such in the dictionary. Equals signs “=” are interpreted as clitic boundaries and are also segmented in the dictionary.
 
 ### 4.6 Exporting passages {#4.6-exporting-passages}
 
 To export a passage, click “Select All” at the top right of a particular passage, and then click “Export”, right underneath “Select All”. To export one or more sentences from within a passage, click the check box on the right of the sentences you’d like to export, and then click “Export”. Upon clicking “Export”, a pop-up window will appear (Figure 17).
 
-The dialog asks where the work is going rather than which file format you want, because that is the question you can answer: you know you are writing a paper, or pasting into a shared document, and the settings that follow are chosen for you from there. The result appears in the box at the bottom and updates as you change anything above it; “Copy” puts it on the clipboard. Nothing is downloaded — this is a copy-and-paste export, and section 2.3 covers saving a whole project to a file instead.
+TT provides three types of export: LaTeX code, formatted text (convenient for pasting into a document or an email), and tab-delimited text (convenient for pasting into a spreadsheet). You choose between them at the top of the dialog, and the settings offered below depend on which you pick.
+
+The result appears in the box at the bottom of the dialog and updates as you change the settings above it. “Copy” places it on the clipboard; nothing is downloaded. To save an entire project to a file instead, see section 2.3.
 
 Figure 17\. Sentence Export in LaTeX format.  
 ![](images/figure_017_sentence_export_in_latex_format.png)
 
 #### 4.6.1 Where is this going? {#4.6.1-where-is-this-going}
 
-Three destinations, and everything else in the dialog follows from the one you pick.
+The three export types are chosen here, labelled by what you are exporting for.
 
-* **A LaTeX paper** — numbered interlinear examples, ready to paste in. This is the option that produces `\begin{exe}`-style examples with aligned lines and a free translation.
-* **A document** — Google Docs, Word, Slides. Words stay above their glosses, so the alignment survives the paste.
-* **A spreadsheet** — Sheets or Excel, one word per cell.
+* **A LaTeX paper** — LaTeX code: numbered interlinear examples with aligned lines and a free translation, ready to paste into a document.
+* **A document** — formatted text, for Google Docs, Word, Slides or an email. Words stay above their glosses, so the alignment survives the paste.
+* **A spreadsheet** — tab-delimited text, one word per cell, for Sheets or Excel.
 
 #### 4.6.2 How it is written {#4.6.2-how-it-is-written}
 
-A folded section headed “How it is written”, whose summary line shows the current answers, so you can see what is set without opening it. These are settings you work out once and then leave alone. Which choices appear depends on the destination.
+A folded section headed “How it is written”. Its summary line lists the current settings, so they can be read without opening it. Which choices it offers depends on the export type.
 
 For **a LaTeX paper**:
 
@@ -251,7 +253,7 @@ Below the folded section, every track in the passage is listed with a checkbox, 
 **Word tracks** are the ones that align word by word, and each carries two further switches:
 
 * **`\textipa all`** (LaTeX with tipa notation only) — write the whole line in tipa notation. With it off, only the parts that need it are wrapped, which leaves ordinary text as ordinary text.
-* **Detect small caps** — a segment written entirely in capitals is taken for a grammatical category and set in small capitals: `3SG`, `child.PL`, `Marcus-POSS`. Because it looks for segments that are *entirely* capitals, an ordinary proper noun is not affected. Switch it off for a track where capitals mean something else, or one holding an acronym that is not a category.
+* **Detect small caps** — anything written entirely in capitals, whether a whole word or a part of one set off by a dash or a period, is taken for a grammatical category and set in small capitals: `3SG`, `child.PL`, `Marcus-POSS`. Because it applies only where the capitals run the whole way through, an ordinary proper noun is left alone. Switch it off for a track where capitals mean something else, or one holding an acronym that is not a category.
 
 **Sentence tracks** are listed separately and have only a checkbox. A sentence track holds one value for the whole sentence and becomes the free translation, so there is no word-by-word wrapping to choose and no capitals to detect.
 
