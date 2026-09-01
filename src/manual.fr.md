@@ -227,8 +227,8 @@ Une section repliée intitulée « How it is written » (comment cela est écrit
 Pour **un article LaTeX** :
 
 * **« Notation »** — la manière dont la ligne phonétique est écrite.
-  * *tipa* — de l'ASCII, sous la forme `\textipa{\!b}`. Compile avec n'importe quel moteur.
-  * *Unicode* — les caractères eux-mêmes, sous la forme ɓ. Nécessite XeLaTeX ou LuaLaTeX.
+  * *tipa* — de l'ASCII, sous la forme `\textipa{\!b}`. Compile sous n'importe quel moteur, mais le document doit charger le paquet tipa (voir la section 4.6.4), ce qui n'est pas toujours commode dans un gabarit élaboré fourni par un éditeur.
+  * *Unicode* — les caractères eux-mêmes, sous la forme ɓ. Nécessite XeLaTeX ou LuaLaTeX, ainsi qu'une police couvrant l'API, mais aucun paquet tipa.
 * **« Interlinear package »** (paquet interlinéaire) — les commandes de quel paquet l'exemple emploie : *gb4e* (recommandé), *expex* ou *linguex*. TT écrit les lignes alignées avec la commande que ce paquet utilise pour le nombre de lignes exportées. Notez que gb4e dans sa version d'origine ne définit que `\gll` et `\glll` : un exemple comportant quatre lignes alignées ou plus requiert donc langsci-gb4e, un remplaçant très répandu qui en définit davantage. L'export écrit la commande dans tous les cas, et un paquet qui ne la définit pas échouera en la nommant, plutôt que de produire un résultat erroné.
 
 Pour **un document** ou **un tableur** :

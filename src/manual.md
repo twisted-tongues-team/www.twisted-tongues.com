@@ -225,8 +225,8 @@ A folded section headed “How it is written”. Its summary line lists the curr
 For **a LaTeX paper**:
 
 * **Notation** — how the phonetic line is written.
-  * *tipa* — ASCII, as `\textipa{\!b}`. Compiles with any engine.
-  * *Unicode* — the characters themselves, as ɓ. Needs XeLaTeX or LuaLaTeX.
+  * *tipa* — ASCII, as `\textipa{\!b}`. Compiles under any engine, but the document has to load the tipa package (see section 4.6.4), which can be awkward to add to an elaborate template from a publisher.
+  * *Unicode* — the characters themselves, as ɓ. Needs XeLaTeX or LuaLaTeX, and a font with IPA coverage, but no tipa package.
 * **Interlinear package** — which package's commands the example is written for: *gb4e* (recommended), *expex*, or *linguex*. TT writes the aligned lines using the command that package uses for the number of lines you are exporting. Note that stock gb4e defines only `\gll` and `\glll`, so an example with four or more aligned lines needs langsci-gb4e, a widely used drop-in replacement that defines more; the export writes the command either way, and a package that does not define it will fail by naming it rather than producing something wrong.
 
 For **a document** or **a spreadsheet**:
