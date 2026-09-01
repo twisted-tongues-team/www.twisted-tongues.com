@@ -34,6 +34,16 @@
 
 [4.6 Exporting passages](#4.6-exporting-passages)
 
+[4.6.1 Where is this going?](#4.6.1-where-is-this-going)
+
+[4.6.2 How it is written](#4.6.2-how-it-is-written)
+
+[4.6.3 Choosing tracks](#4.6.3-choosing-tracks)
+
+[4.6.4 The preamble](#4.6.4-the-preamble)
+
+[4.6.5 The previous export](#4.6.5-the-previous-export)
+
 [5 Word Search](#5-word-search)
 
 [5.1 Search options](#5.1-search-options)
@@ -75,7 +85,9 @@ Figure 1\. Landing page after login.
 
 ### 2.1 Opening a project {#2.1-opening-a-project}
 
-Projects are sets of passages associated with a single research project. It is recommended that users create a different project for each distinct language for which data is entered into TT. Projects can be viewed from the “Projects” tab (Figure 2). Within the Projects tab, users will see a list of all projects they have created, as well as those that have been shared with them. For each project in the Projects tab, there are three available options: 1\) Delete, which permanently removes the project for all users (only the project owner can do this), 2\) Open, which allows the user to view the Dictionary, Word Search, and Passages for that project, and to enter new data, and 3\) Clone, which makes a local copy of the same project in the browser you are using. (An Edit button also appears but is currently disabled: a project's name and description cannot be changed after creation.)
+Projects are sets of passages associated with a single research project. It is recommended that users create a different project for each distinct language for which data is entered into TT. Projects can be viewed from the “Projects” tab (Figure 2). Within the Projects tab, users will see every project they have created, together with those that have been shared with them, under two headings: “Shared projects” for those that have collaborators — whether you invited somebody to a project of yours, or somebody invited you to theirs — and “Private projects” for those that have none. A heading appears only when there is something under it, so a user who has never shared anything sees a single list. Each row also names your role in that project: owner, writer or reader.
+
+For each project in the Projects tab, there are two available options: 1\) Delete, which permanently removes the project for all users (only the project owner can do this), and 2\) Open, which allows the user to view the Dictionary, Word Search, and Passages for that project, and to enter new data. (An Edit button also appears but is currently disabled: a project's name and description cannot be changed after creation.)
 
 Figure 2\. Projects tab.
 ![](images/figure_002_projects_tab.png)
@@ -102,7 +114,9 @@ See the [export format](/dev/export-format) page if you would like to read the f
 
 ### 2.4 Loading a project from a file {#2.4-loading-a-project-from-a-file}
 
-A saved file can be loaded back in from the “Projects” tab: click “Load from File…” in the “Local” section, and TT will report what it found in the file before creating anything. It always loads into a new “local” project — one that lives in the browser you are using — rather than adding to or restoring a project on the server. Files written by any earlier version of TT load as well, and keeping every file TT has ever written loadable is a commitment we intend to keep, as far as we are able; the oldest of them predate templates, so a project loaded from one will have none.
+A saved file can be loaded back in from the “Projects” tab: click “Load from File…”, and TT will report what it found in the file — its name, description, and how many passages, sentences and templates it holds — before creating anything. Loading always creates a new project, and never adds to or restores one that already exists, so a file that turns out to be the wrong one cannot damage work already on the server. The new project is yours, on the server, and can be shared like any other.
+
+Files written by any earlier version of TT load as well, and keeping every file TT has ever written loadable is a commitment we intend to keep, as far as we are able; the oldest of them predate templates, so a project loaded from one will have none.
 
 ## 3 Templates {#3-templates}
 
@@ -141,7 +155,7 @@ Figure 10\. New template is in the template list.
 
 ### 3.2 Track types {#3.2-track-types}
 
-The “type” determines how data is entered and aligned for that particular track. All tracks of the “Text” and “T2IPA” types will be aligned with each other at word boundaries. These are best used for transcriptions \+ corresponding glosses, and perhaps morpheme- or word-specific tags. The “Full sentence” type, on the other hand, has a single text entry blank for each utterance, and is best used for translations and notes. In the Text and Full sentence track types, any unicode character can be entered and will be viewable and exportable appropriately. In the T2IPA track type, a user enters code for IPA characters based on the [tipa LaTeX package](https://jon.dehdari.org/tutorials/tipachart_mod.pdf), which then appears underneath the entered code in the Passages and Word Search tab. Data entry in any track type should export appropriately to any export type (so whether you enter your IPA line in a Text or T2IPA track type, it will export correctly to both plain text and LaTeX format). The number of templates is not limited. 
+The “type” determines how data is entered and aligned for that particular track. All tracks of the “Text” and “T2IPA” types will be aligned with each other at word boundaries. These are best used for transcriptions \+ corresponding glosses, and perhaps morpheme- or word-specific tags. The “Full sentence” type, on the other hand, has a single text entry blank for each utterance, and is best used for translations and notes. In the Text and Full sentence track types, any unicode character can be entered and will be viewable and exportable appropriately. In the T2IPA track type, a user enters code for IPA characters based on the [tipa LaTeX package](https://jon.dehdari.org/tutorials/tipachart_mod.pdf), which then appears underneath the entered code in the Passages and Word Search tab. Data entry in any track type should export appropriately to any destination (so whether you enter your IPA line in a Text or T2IPA track type, it will export correctly whether you are writing a LaTeX paper, a document or a spreadsheet). The number of templates is not limited. 
 
 ## 4 Passages {#4-passages}
 
@@ -183,14 +197,91 @@ If using a track of the type “T2IPA”, data should be entered as code followi
 
 ### 4.5 Gloss line entry {#4.5-gloss-line-entry}
 
-In any text-type track, capital letters will be exported as small caps for glossing purposes, following the [Leipzig Glossing Conventions](https://www.eva.mpg.de/lingua/pdf/Glossing-Rules.pdf). Dashes within a single cell are interpreted as morpheme boundaries and segmented as such in the dictionary. Equals signs “=” are interpreted as clitic boundaries and are also segmented in the dictionary.
+In any text-type track, a segment written entirely in capital letters can be exported as small caps for glossing purposes, following the [Leipzig Glossing Conventions](https://www.eva.mpg.de/lingua/pdf/Glossing-Rules.pdf). This is controlled per track, by the “Detect small caps” switch in the export dialog (see section 4.6.3); it starts switched on for every track except the phonetic ones, which instead start with tipa wrapping on. Dashes within a single cell are interpreted as morpheme boundaries and segmented as such in the dictionary. Equals signs “=” are interpreted as clitic boundaries and are also segmented in the dictionary.
 
 ### 4.6 Exporting passages {#4.6-exporting-passages}
 
-To export a passage, click “Select All” at the top right of a particular passage, and then click “Export”, right underneath “Select All”. To export one or more sentences from within a passage, click the check box on the right of the sentences you’d like to export, and then click “Export”. Upon clicking “Export”, a pop-up window will appear (Figure 17), wherein a user can choose to export in one of three modes: LaTeX, Formatted Table, or Formatted Tabs. LaTeX export assumes the use of the tipa and gb4e LaTeX packages. Formatted tables are plain text formatted in a table, resulting in correct alignment of transcriptions \+ glosses when copied into a spreadsheet or word processing software. Formatted tabs are similar, but with a tab between each word rather than formatted in a table. Users can also customize which tracks are exported. For example, you may have a track for notes or syntactic category that is useful for searching in the database, but you may not want to export these tracks for publishing. For each track name, there is a drop-down menu allowing the user to choose whether to export that track or not. In the same drop-down menu, for each Text- or T2IPA-type track the user can choose whether to export as IPA (recommended for any line written in IPA, whether using the Text-type track or the T2IPA-type track) or Gloss. This choice will determine how special characters are exported.
+To export a passage, click “Select All” at the top right of a particular passage, and then click “Export”, right underneath “Select All”. To export one or more sentences from within a passage, click the check box on the right of the sentences you’d like to export, and then click “Export”. Upon clicking “Export”, a pop-up window will appear (Figure 17).
+
+The dialog asks where the work is going rather than which file format you want, because that is the question you can answer: you know you are writing a paper, or pasting into a shared document, and the settings that follow are chosen for you from there. The result appears in the box at the bottom and updates as you change anything above it; “Copy” puts it on the clipboard. Nothing is downloaded — this is a copy-and-paste export, and section 2.3 covers saving a whole project to a file instead.
 
 Figure 17\. Sentence Export in LaTeX format.  
 ![](images/figure_017_sentence_export_in_latex_format.png)
+
+#### 4.6.1 Where is this going? {#4.6.1-where-is-this-going}
+
+Three destinations, and everything else in the dialog follows from the one you pick.
+
+* **A LaTeX paper** — numbered interlinear examples, ready to paste in. This is the option that produces `\begin{exe}`-style examples with aligned lines and a free translation.
+* **A document** — Google Docs, Word, Slides. Words stay above their glosses, so the alignment survives the paste.
+* **A spreadsheet** — Sheets or Excel, one word per cell.
+
+#### 4.6.2 How it is written {#4.6.2-how-it-is-written}
+
+A folded section headed “How it is written”, whose summary line shows the current answers, so you can see what is set without opening it. These are settings you work out once and then leave alone. Which choices appear depends on the destination.
+
+For **a LaTeX paper**:
+
+* **Notation** — how the phonetic line is written.
+  * *tipa* — ASCII, as `\textipa{\!b}`. Compiles with any engine.
+  * *Unicode* — the characters themselves, as ɓ. Needs XeLaTeX or LuaLaTeX.
+* **Interlinear package** — which package's commands the example is written for: *gb4e* (recommended), *expex*, or *linguex*. TT writes the aligned lines using the command that package uses for the number of lines you are exporting. Note that stock gb4e defines only `\gll` and `\glll`, so an example with four or more aligned lines needs langsci-gb4e, a widely used drop-in replacement that defines more; the export writes the command either way, and a package that does not define it will fail by naming it rather than producing something wrong.
+
+For **a document** or **a spreadsheet**:
+
+* **How small capitals are written** — this decides the encoding, and what survives depends on which half of the styling the receiving editor keeps.
+  * *Small capitals* — uppercase with styling. Recommended: where styling is kept you get true small capitals, and where it is lost you get capitals, which still read as a gloss.
+  * *Small capitals, lowercase* — lowercase with styling. Better in Google Docs specifically, which keeps one styling property and drops the other. The trade is that if all styling is lost, the gloss arrives in lowercase.
+  * *Plain capitals* — no styling at all.
+
+  This choice is unavailable, with a note saying so, when no track has “Detect small caps” switched on — there is then nothing for it to write.
+
+For **every** destination:
+
+* **Characters** — whether accented characters are composed or decomposed. This is not a choice about how anything looks; both are identical on the page and differ only to software.
+  * *Composed* — á is one character (NFC). What other software expects.
+  * *Separate marks* — á is two, a plus a combining acute (NFD).
+
+  This choice is unavailable when the notation is tipa, since tipa is ASCII and has no characters to normalize.
+
+#### 4.6.3 Choosing tracks {#4.6.3-choosing-tracks}
+
+Below the folded section, every track in the passage is listed with a checkbox, so you can leave out tracks that are useful for searching but not for publishing — a notes track, or one holding syntactic categories.
+
+**Word tracks** are the ones that align word by word, and each carries two further switches:
+
+* **`\textipa all`** (LaTeX with tipa notation only) — write the whole line in tipa notation. With it off, only the parts that need it are wrapped, which leaves ordinary text as ordinary text.
+* **Detect small caps** — a segment written entirely in capitals is taken for a grammatical category and set in small capitals: `3SG`, `child.PL`, `Marcus-POSS`. Because it looks for segments that are *entirely* capitals, an ordinary proper noun is not affected. Switch it off for a track where capitals mean something else, or one holding an acronym that is not a category.
+
+**Sentence tracks** are listed separately and have only a checkbox. A sentence track holds one value for the whole sentence and becomes the free translation, so there is no word-by-word wrapping to choose and no capitals to detect.
+
+#### 4.6.4 The preamble {#4.6.4-the-preamble}
+
+For a LaTeX paper, a folded “Preamble” section gives the lines your document needs to load, once, for the export to compile, and names the engines that combination works with. What it contains depends on the notation you chose.
+
+With **tipa** notation, which compiles under pdfLaTeX, XeLaTeX or LuaLaTeX:
+
+```
+\usepackage[T3,T1]{fontenc}
+\usepackage{gb4e}   % or langsci-gb4e, for more than three aligned lines
+\usepackage[tone]{tipa}
+```
+
+The order matters and is not the obvious one: gb4e and tipa both define `\|`, and whichever loads second wins, so tipa is loaded after the interlinear package. The dialog says so beneath the preamble when both are selected.
+
+With **Unicode** notation, which needs XeLaTeX or LuaLaTeX:
+
+```
+\usepackage{fontspec}
+\setmainfont{Charis SIL}   % or any face with IPA
+\usepackage{gb4e}   % or langsci-gb4e, for more than three aligned lines
+```
+
+Any font with good IPA coverage will do in place of Charis SIL.
+
+#### 4.6.5 The previous export {#4.6.5-the-previous-export}
+
+A link at the foot of the dialog switches back to the export TT used before, for anyone with a document already built around its output — it wrote a bare `\gll` and expected the document to define an `\ipa` command and supply its own example environment, where the current export writes a complete numbered example. The choice is remembered in the browser you are using, and a link switches back. This is temporary, and the older export will be removed in a future release.
 
 ## 5 Word Search {#5-word-search}
 
