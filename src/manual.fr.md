@@ -34,15 +34,15 @@
 
 [4.6 Exporter des passages](#4.6-exporting-passages)
 
-[4.6.1 Où cela va-t-il ?](#4.6.1-where-is-this-going)
+[4.6.1 Type d'export](#4.6.1-export-type)
 
-[4.6.2 Comment cela est écrit](#4.6.2-how-it-is-written)
+[4.6.2 Options avancées](#4.6.2-advanced-options)
 
 [4.6.3 Choisir les pistes](#4.6.3-choosing-tracks)
 
 [4.6.4 Le préambule](#4.6.4-the-preamble)
 
-[4.6.5 L'ancien export](#4.6.5-the-previous-export)
+[4.6.5 L'ancien export](#4.6.5-the-legacy-export)
 
 [5 Recherche de mots](#5-word-search)
 
@@ -157,7 +157,7 @@ Figure 10\. Le nouveau modèle figure dans la liste des modèles.
 
 ### 3.2 Types de pistes {#3.2-track-types}
 
-Le type (« type ») détermine la manière dont les données sont saisies et alignées pour la piste concernée. Toutes les pistes de type « Text » (texte) et « T2IPA » sont alignées entre elles aux frontières de mots. Elles conviennent le mieux aux transcriptions \+ gloses correspondantes, et éventuellement aux étiquettes propres à un morphème ou à un mot. Le type « Full sentence » (phrase complète), en revanche, offre un unique champ de texte pour chaque énoncé ; il convient le mieux aux traductions et aux notes. Dans les pistes de type « Text » et « Full sentence », tout caractère Unicode peut être saisi et sera affiché et exporté correctement. Dans les pistes de type « T2IPA », l'utilisateur saisit un code pour les caractères de l'API (alphabet phonétique international) fondé sur le [paquet LaTeX tipa](https://jon.dehdari.org/tutorials/tipachart_mod.pdf) ; le rendu apparaît alors sous le code saisi dans les onglets « Passages » et « Word Search ». Les données saisies dans n'importe quel type de piste s'exportent correctement vers n'importe quelle destination (ainsi, que votre ligne API soit saisie dans une piste de type « Text » ou « T2IPA », elle sera exportée correctement que vous rédigiez un article LaTeX, un document ou un tableur). Le nombre de modèles n'est pas limité. 
+Le type (« type ») détermine la manière dont les données sont saisies et alignées pour la piste concernée. Toutes les pistes de type « Text » (texte) et « T2IPA » sont alignées entre elles aux frontières de mots. Elles conviennent le mieux aux transcriptions \+ gloses correspondantes, et éventuellement aux étiquettes propres à un morphème ou à un mot. Le type « Full sentence » (phrase complète), en revanche, offre un unique champ de texte pour chaque énoncé ; il convient le mieux aux traductions et aux notes. Dans les pistes de type « Text » et « Full sentence », tout caractère Unicode peut être saisi et sera affiché et exporté correctement. Dans les pistes de type « T2IPA », l'utilisateur saisit un code pour les caractères de l'API (alphabet phonétique international) fondé sur le [paquet LaTeX tipa](https://jon.dehdari.org/tutorials/tipachart_mod.pdf) ; le rendu apparaît alors sous le code saisi dans les onglets « Passages » et « Word Search ». Les données saisies dans n'importe quel type de piste s'exportent correctement vers n'importe quel format d'export (ainsi, que votre ligne API soit saisie dans une piste de type « Text » ou « T2IPA », elle sera exportée correctement aussi bien en texte brut qu'au format LaTeX). Le nombre de modèles n'est pas limité. 
 
 ## 4 Passages {#4-passages}
 
@@ -212,7 +212,7 @@ Le résultat apparaît dans le cadre au bas de la fenêtre et se met à jour à 
 Figure 17\. Export de phrases au format LaTeX.  
 ![](images/figure_017_sentence_export_in_latex_format.png)
 
-#### 4.6.1 Où cela va-t-il ? {#4.6.1-where-is-this-going}
+#### 4.6.1 Type d'export {#4.6.1-export-type}
 
 Les trois types d'export se choisissent ici, désignés par l'usage auquel ils sont destinés.
 
@@ -220,7 +220,7 @@ Les trois types d'export se choisissent ici, désignés par l'usage auquel ils s
 * **« A document »** (un document) — du texte mis en forme, pour Google Docs, Word, Slides ou un courriel. Les mots restent au-dessus de leurs gloses, de sorte que l'alignement survit au collage.
 * **« A spreadsheet »** (un tableur) — du texte délimité par des tabulations, un mot par cellule, pour Sheets ou Excel.
 
-#### 4.6.2 Comment cela est écrit {#4.6.2-how-it-is-written}
+#### 4.6.2 Options avancées {#4.6.2-advanced-options}
 
 Une section repliée intitulée « How it is written » (comment cela est écrit). Sa ligne de résumé énumère les réglages actuels, qui se lisent donc sans avoir à l'ouvrir. Les choix qu'elle propose dépendent du type d'export.
 
@@ -283,9 +283,11 @@ Avec la notation **Unicode**, qui nécessite XeLaTeX ou LuaLaTeX :
 
 Toute police offrant une bonne couverture de l'API peut remplacer Charis SIL.
 
-#### 4.6.5 L'ancien export {#4.6.5-the-previous-export}
+#### 4.6.5 L'ancien export {#4.6.5-the-legacy-export}
 
-Un lien au bas de la fenêtre permet de revenir à l'export que TT utilisait auparavant, à l'intention de ceux dont le document est déjà construit autour de sa sortie : celui-ci écrivait un `\gll` nu et attendait du document qu'il définisse une commande `\ipa` et fournisse son propre environnement d'exemple, là où l'export actuel écrit un exemple numéroté complet. Ce choix est mémorisé dans le navigateur que vous utilisez, et un lien permet de revenir en arrière. Il s'agit d'une mesure temporaire : l'ancien export sera supprimé dans une prochaine version.
+Un lien au bas de la fenêtre permet de basculer vers l'export que TT utilisait auparavant, et un lien permet d'en revenir. Ce choix est mémorisé dans le navigateur que vous utilisez.
+
+Il n'est pas documenté ici et sera supprimé dans une prochaine version. Si vous constatez devoir l'utiliser, merci de [nous indiquer](#8-questions?) ce qui manque à l'export actuel.
 
 ## 5 Recherche de mots {#5-word-search}
 

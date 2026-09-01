@@ -34,15 +34,15 @@
 
 [4.6 Exporting passages](#4.6-exporting-passages)
 
-[4.6.1 Where is this going?](#4.6.1-where-is-this-going)
+[4.6.1 Export type](#4.6.1-export-type)
 
-[4.6.2 How it is written](#4.6.2-how-it-is-written)
+[4.6.2 Advanced options](#4.6.2-advanced-options)
 
 [4.6.3 Choosing tracks](#4.6.3-choosing-tracks)
 
 [4.6.4 The preamble](#4.6.4-the-preamble)
 
-[4.6.5 The previous export](#4.6.5-the-previous-export)
+[4.6.5 The legacy export](#4.6.5-the-legacy-export)
 
 [5 Word Search](#5-word-search)
 
@@ -155,7 +155,7 @@ Figure 10\. New template is in the template list.
 
 ### 3.2 Track types {#3.2-track-types}
 
-The “type” determines how data is entered and aligned for that particular track. All tracks of the “Text” and “T2IPA” types will be aligned with each other at word boundaries. These are best used for transcriptions \+ corresponding glosses, and perhaps morpheme- or word-specific tags. The “Full sentence” type, on the other hand, has a single text entry blank for each utterance, and is best used for translations and notes. In the Text and Full sentence track types, any unicode character can be entered and will be viewable and exportable appropriately. In the T2IPA track type, a user enters code for IPA characters based on the [tipa LaTeX package](https://jon.dehdari.org/tutorials/tipachart_mod.pdf), which then appears underneath the entered code in the Passages and Word Search tab. Data entry in any track type should export appropriately to any destination (so whether you enter your IPA line in a Text or T2IPA track type, it will export correctly whether you are writing a LaTeX paper, a document or a spreadsheet). The number of templates is not limited. 
+The “type” determines how data is entered and aligned for that particular track. All tracks of the “Text” and “T2IPA” types will be aligned with each other at word boundaries. These are best used for transcriptions \+ corresponding glosses, and perhaps morpheme- or word-specific tags. The “Full sentence” type, on the other hand, has a single text entry blank for each utterance, and is best used for translations and notes. In the Text and Full sentence track types, any unicode character can be entered and will be viewable and exportable appropriately. In the T2IPA track type, a user enters code for IPA characters based on the [tipa LaTeX package](https://jon.dehdari.org/tutorials/tipachart_mod.pdf), which then appears underneath the entered code in the Passages and Word Search tab. Data entry in any track type should export appropriately to any export type (so whether you enter your IPA line in a Text or T2IPA track type, it will export correctly to both plain text and LaTeX format). The number of templates is not limited. 
 
 ## 4 Passages {#4-passages}
 
@@ -210,7 +210,7 @@ The result appears in the box at the bottom of the dialog and updates as you cha
 Figure 17\. Sentence Export in LaTeX format.  
 ![](images/figure_017_sentence_export_in_latex_format.png)
 
-#### 4.6.1 Where is this going? {#4.6.1-where-is-this-going}
+#### 4.6.1 Export type {#4.6.1-export-type}
 
 The three export types are chosen here, labelled by what you are exporting for.
 
@@ -218,7 +218,7 @@ The three export types are chosen here, labelled by what you are exporting for.
 * **A document** — formatted text, for Google Docs, Word, Slides or an email. Words stay above their glosses, so the alignment survives the paste.
 * **A spreadsheet** — tab-delimited text, one word per cell, for Sheets or Excel.
 
-#### 4.6.2 How it is written {#4.6.2-how-it-is-written}
+#### 4.6.2 Advanced options {#4.6.2-advanced-options}
 
 A folded section headed “How it is written”. Its summary line lists the current settings, so they can be read without opening it. Which choices it offers depends on the export type.
 
@@ -281,9 +281,11 @@ With **Unicode** notation, which needs XeLaTeX or LuaLaTeX:
 
 Any font with good IPA coverage will do in place of Charis SIL.
 
-#### 4.6.5 The previous export {#4.6.5-the-previous-export}
+#### 4.6.5 The legacy export {#4.6.5-the-legacy-export}
 
-A link at the foot of the dialog switches back to the export TT used before, for anyone with a document already built around its output — it wrote a bare `\gll` and expected the document to define an `\ipa` command and supply its own example environment, where the current export writes a complete numbered example. The choice is remembered in the browser you are using, and a link switches back. This is temporary, and the older export will be removed in a future release.
+A link at the foot of the dialog switches to the export TT used before, and a link there switches back. The choice is remembered in the browser you are using.
+
+It is not documented here, and it will be removed in a future release. If you find you have to use it, please [tell us](#8-questions?) what the current export is missing.
 
 ## 5 Word Search {#5-word-search}
 
