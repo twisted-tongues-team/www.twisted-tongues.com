@@ -34,6 +34,16 @@
 
 [4.6 Exporter des passages](#4.6-exporting-passages)
 
+[4.6.1 Type d'export](#4.6.1-export-type)
+
+[4.6.2 Options avancées](#4.6.2-advanced-options)
+
+[4.6.3 Choisir les pistes](#4.6.3-choosing-tracks)
+
+[4.6.4 Le préambule](#4.6.4-the-preamble)
+
+[4.6.5 L'ancien export](#4.6.5-the-legacy-export)
+
 [5 Recherche de mots](#5-word-search)
 
 [5.1 Options de recherche](#5.1-search-options)
@@ -77,7 +87,9 @@ Figure 1\. Page d'accueil après connexion.
 
 ### 2.1 Ouvrir un projet {#2.1-opening-a-project}
 
-Les projets sont des ensembles de passages associés à un même projet de recherche. Il est recommandé de créer un projet distinct pour chaque langue dont les données sont saisies dans TT. Les projets peuvent être consultés depuis l'onglet « Projects » (figure 2). Dans cet onglet, l'utilisateur voit la liste de tous les projets qu'il a créés, ainsi que ceux qui ont été partagés avec lui. Pour chaque projet de l'onglet « Projects », trois options sont disponibles : 1\) « Delete » (supprimer), qui supprime définitivement le projet pour tous les utilisateurs (seul le propriétaire du projet peut le faire) ; 2\) « Open » (ouvrir), qui permet de consulter le dictionnaire (« Dictionary »), la recherche de mots (« Word Search ») et les passages (« Passages ») de ce projet, et d'y saisir de nouvelles données ; et 3\) « Clone » (cloner), qui crée une copie locale du même projet dans le navigateur utilisé. (Un bouton « Edit » (modifier) apparaît également, mais il est actuellement désactivé : le nom et la description d'un projet ne peuvent pas être modifiés après leur création.)
+Les projets sont des ensembles de passages associés à un même projet de recherche. Il est recommandé de créer un projet distinct pour chaque langue dont les données sont saisies dans TT. Les projets peuvent être consultés depuis l'onglet « Projects » (figure 2). Dans cet onglet, l'utilisateur voit tous les projets qu'il a créés, ainsi que ceux qui ont été partagés avec lui, répartis sous deux intitulés : « Shared projects » (projets partagés) pour ceux qui ont des collaborateurs — que vous ayez invité quelqu'un sur l'un de vos projets ou que l'on vous ait invité sur le sien — et « Private projects » (projets privés) pour ceux qui n'en ont aucun. Un intitulé n'apparaît que s'il a quelque chose à présenter : un utilisateur qui n'a jamais rien partagé ne voit donc qu'une seule liste. Chaque ligne indique également votre rôle dans le projet : « owner » (propriétaire), « writer » (rédacteur) ou « reader » (lecteur).
+
+Pour chaque projet de l'onglet « Projects », deux options sont disponibles : 1\) « Delete » (supprimer), qui supprime définitivement le projet pour tous les utilisateurs (seul le propriétaire du projet peut le faire) ; et 2\) « Open » (ouvrir), qui permet de consulter le dictionnaire (« Dictionary »), la recherche de mots (« Word Search ») et les passages (« Passages ») de ce projet, et d'y saisir de nouvelles données. (Un bouton « Edit » (modifier) apparaît également, mais il est actuellement désactivé : le nom et la description d'un projet ne peuvent pas être modifiés après leur création.)
 
 Figure 2\. Onglet « Projects ».
 ![](images/figure_002_projects_tab.png)
@@ -104,7 +116,9 @@ Consultez la page [export format](/dev/export-format) (en anglais) si vous souha
 
 ### 2.4 Charger un projet depuis un fichier {#2.4-loading-a-project-from-a-file}
 
-Un fichier enregistré peut être rechargé depuis l'onglet « Projects » : cliquez sur « Load from File… » (charger depuis un fichier) dans la section « Local », et TT indiquera ce qu'il a trouvé dans le fichier avant de créer quoi que ce soit. Le chargement crée toujours un nouveau projet « local » — qui réside dans le navigateur que vous utilisez — plutôt que de compléter ou de restaurer un projet sur le serveur. Les fichiers écrits par n'importe quelle version antérieure de TT se chargent également, et nous entendons faire en sorte que tout fichier écrit par TT reste chargeable, dans la mesure de nos moyens ; les plus anciens sont antérieurs aux modèles, un projet chargé à partir de l'un d'eux n'en aura donc aucun.
+Un fichier enregistré peut être rechargé depuis l'onglet « Projects » : cliquez sur « Load from File… » (charger depuis un fichier), et TT indiquera ce qu'il a trouvé dans le fichier — son nom, sa description, ainsi que le nombre de passages, de phrases et de modèles qu'il contient — avant de créer quoi que ce soit. Le chargement crée toujours un nouveau projet ; il ne complète ni ne restaure jamais un projet existant, de sorte qu'un fichier qui se révélerait être le mauvais ne peut pas endommager un travail déjà présent sur le serveur. Le nouveau projet vous appartient, réside sur le serveur, et peut être partagé comme n'importe quel autre.
+
+Les fichiers écrits par n'importe quelle version antérieure de TT se chargent également, et nous entendons faire en sorte que tout fichier écrit par TT reste chargeable, dans la mesure de nos moyens ; les plus anciens sont antérieurs aux modèles, un projet chargé à partir de l'un d'eux n'en aura donc aucun.
 
 ## 3 Modèles {#3-templates}
 
@@ -185,14 +199,95 @@ Dans une piste de type « T2IPA », les données doivent être saisies sous form
 
 ### 4.5 Saisie de la ligne de glose {#4.5-gloss-line-entry}
 
-Dans toute piste de type « Text », les majuscules sont exportées en petites capitales à des fins de glose, conformément aux [règles de glose de Leipzig](https://www.eva.mpg.de/lingua/pdf/Glossing-Rules.pdf). Les tirets au sein d'une même cellule sont interprétés comme des frontières de morphèmes et segmentés comme tels dans le dictionnaire. Les signes égal « = » sont interprétés comme des frontières de clitiques et sont eux aussi segmentés dans le dictionnaire.
+Dans toute piste de type « Text », les majuscules sont exportées en petites capitales à des fins de glose, conformément aux [règles de glose de Leipzig](https://www.eva.mpg.de/lingua/pdf/Glossing-Rules.pdf) ; ce comportement peut être désactivé piste par piste au moment de l'export (voir la section 4.6.3). Les tirets au sein d'une même cellule sont interprétés comme des frontières de morphèmes et segmentés comme tels dans le dictionnaire. Les signes égal « = » sont interprétés comme des frontières de clitiques et sont eux aussi segmentés dans le dictionnaire.
 
 ### 4.6 Exporter des passages {#4.6-exporting-passages}
 
-Pour exporter un passage, cliquez sur « Select All » (tout sélectionner) en haut à droite du passage concerné, puis sur « Export » (exporter), juste en dessous de « Select All ». Pour exporter une ou plusieurs phrases d'un passage, cochez la case à droite des phrases à exporter, puis cliquez sur « Export ». Une fenêtre contextuelle apparaît alors (figure 17), dans laquelle l'utilisateur peut choisir l'un des trois modes d'export : LaTeX, tableau formaté (« Formatted Table ») ou tabulations formatées (« Formatted Tabs »). L'export LaTeX suppose l'utilisation des paquets LaTeX tipa et gb4e. Les tableaux formatés sont du texte brut mis en forme en tableau, garantissant un alignement correct des transcriptions \+ gloses une fois copiés dans un tableur ou un logiciel de traitement de texte. Les tabulations formatées sont similaires, mais avec une tabulation entre chaque mot au lieu d'une mise en forme en tableau. L'utilisateur peut également choisir quelles pistes exporter. Par exemple, une piste de notes ou de catégories syntaxiques peut être utile pour les recherches dans la base, sans que l'on souhaite l'exporter pour publication. Pour chaque nom de piste, un menu déroulant permet de choisir d'exporter ou non cette piste. Dans ce même menu, pour chaque piste de type « Text » ou « T2IPA », l'utilisateur peut choisir un export en mode IPA (recommandé pour toute ligne écrite en API, qu'elle soit saisie dans une piste « Text » ou « T2IPA ») ou en mode Gloss. Ce choix détermine la manière dont les caractères spéciaux sont exportés.
+Pour exporter un passage, cliquez sur « Select All » (tout sélectionner) en haut à droite du passage concerné, puis sur « Export » (exporter), juste en dessous de « Select All ». Pour exporter une ou plusieurs phrases d'un passage, cochez la case à droite des phrases à exporter, puis cliquez sur « Export ». Une fenêtre contextuelle apparaît alors (figure 17).
+
+TT propose trois types d'export : du code LaTeX, du texte mis en forme (pratique à coller dans un document ou un courriel) et du texte délimité par des tabulations (pratique à coller dans un tableur). Le choix se fait en haut de la fenêtre, et les réglages proposés en dessous dépendent du type retenu.
+
+Le résultat apparaît dans le cadre au bas de la fenêtre et se met à jour à mesure que vous modifiez les réglages situés au-dessus. « Copy » (copier) le place dans le presse-papiers ; rien n'est téléchargé. Pour enregistrer un projet entier dans un fichier, voir la section 2.3.
 
 Figure 17\. Export de phrases au format LaTeX.  
 ![](images/figure_017_sentence_export_in_latex_format.png)
+
+#### 4.6.1 Type d'export {#4.6.1-export-type}
+
+Les trois types d'export se choisissent ici, désignés par l'usage auquel ils sont destinés.
+
+* **« A LaTeX paper »** (un article LaTeX) — du code LaTeX : des exemples interlinéaires numérotés, avec des lignes alignées et une traduction libre, prêts à être collés dans un document.
+* **« A document »** (un document) — du texte mis en forme, pour Google Docs, Word, Slides ou un courriel. Les mots restent au-dessus de leurs gloses, de sorte que l'alignement survit au collage.
+* **« A spreadsheet »** (un tableur) — du texte délimité par des tabulations, un mot par cellule, pour Sheets ou Excel.
+
+#### 4.6.2 Options avancées {#4.6.2-advanced-options}
+
+Une section repliée intitulée « How it is written » (comment cela est écrit). Sa ligne de résumé énumère les réglages actuels, qui se lisent donc sans avoir à l'ouvrir. Les choix qu'elle propose dépendent du type d'export.
+
+Pour **un article LaTeX** :
+
+* **« Notation »** — la manière dont la ligne phonétique est écrite.
+  * *tipa* — de l'ASCII, sous la forme `\textipa{\!b}`. Compile sous n'importe quel moteur, mais le document doit charger le paquet tipa (voir la section 4.6.4), ce qui n'est pas toujours commode dans un gabarit élaboré fourni par un éditeur.
+  * *Unicode* — les caractères eux-mêmes, sous la forme ɓ. Nécessite XeLaTeX ou LuaLaTeX, ainsi qu'une police couvrant l'API, mais aucun paquet tipa.
+* **« Interlinear package »** (paquet interlinéaire) — les commandes de quel paquet l'exemple emploie : *gb4e* (recommandé), *expex* ou *linguex*. TT écrit les lignes alignées avec la commande que ce paquet utilise pour le nombre de lignes exportées. Notez que gb4e dans sa version d'origine ne définit que `\gll` et `\glll` : un exemple comportant quatre lignes alignées ou plus requiert donc langsci-gb4e, un remplaçant très répandu qui en définit davantage. L'export écrit la commande dans tous les cas, et un paquet qui ne la définit pas échouera en la nommant, plutôt que de produire un résultat erroné.
+
+Pour **un document** ou **un tableur** :
+
+* **« How small capitals are written »** (comment les petites capitales sont écrites) — ce réglage détermine l'encodage, et ce qui survit dépend de la moitié de la mise en forme que conserve le logiciel de destination.
+  * *« Small capitals »* (petites capitales) — majuscules avec mise en forme. Recommandé : là où la mise en forme est conservée, vous obtenez de vraies petites capitales ; là où elle est perdue, vous obtenez des majuscules, qui se lisent encore comme une glose.
+  * *« Small capitals, lowercase »* (petites capitales, minuscules) — minuscules avec mise en forme. Préférable dans Google Docs en particulier, qui conserve l'une des propriétés de mise en forme et abandonne l'autre. En contrepartie, si toute la mise en forme est perdue, la glose arrive en minuscules.
+  * *« Plain capitals »* (majuscules simples) — aucune mise en forme.
+
+  Ce choix est indisponible, avec une note l'indiquant, lorsque aucune piste n'a l'option « Detect small caps » activée : il n'y a alors rien à écrire.
+
+Pour **toutes** les destinations :
+
+* **« Characters »** (caractères) — si les caractères accentués sont composés ou décomposés. Il ne s'agit pas d'un choix d'apparence : les deux sont identiques sur la page et ne diffèrent que pour les logiciels.
+  * *« Composed »* (composé) — á est un seul caractère (NFC). Ce à quoi les autres logiciels s'attendent.
+  * *« Separate marks »* (marques séparées) — á en fait deux, a suivi d'un accent aigu combinant (NFD).
+
+  Ce choix est indisponible lorsque la notation est tipa, celle-ci étant de l'ASCII : il n'y a aucun caractère à normaliser.
+
+#### 4.6.3 Choisir les pistes {#4.6.3-choosing-tracks}
+
+Sous la section repliée, chaque piste du passage est présentée avec une case à cocher : vous pouvez ainsi écarter les pistes utiles pour la recherche mais non pour la publication — une piste de notes, ou une piste de catégories syntaxiques.
+
+Les **pistes de mots** (« Word tracks ») sont celles qui s'alignent mot à mot, et chacune porte deux réglages supplémentaires :
+
+* **`\textipa all`** (uniquement pour LaTeX en notation tipa) — écrire toute la ligne en notation tipa. Désactivé, seules les parties qui en ont besoin sont encadrées, ce qui laisse le texte ordinaire tel quel.
+* **« Detect small caps »** (détecter les petites capitales) — tout ce qui est écrit entièrement en majuscules, qu'il s'agisse d'un mot entier ou d'une partie de mot délimitée par un tiret ou un point, est considéré comme une catégorie grammaticale et composé en petites capitales : `3SG`, `child.PL`, `Marcus-POSS`. Comme la règle ne s'applique que là où les majuscules courent d'un bout à l'autre, un nom propre ordinaire n'est pas concerné. Désactivez-la pour une piste où les majuscules signifient autre chose, ou qui contient un sigle qui n'est pas une catégorie.
+
+Les **pistes de phrases** (« Sentence tracks ») figurent séparément et n'ont qu'une case à cocher. Une piste de phrase contient une seule valeur pour toute la phrase et devient la traduction libre : il n'y a donc pas d'encadrement mot à mot à choisir, ni de majuscules à détecter.
+
+#### 4.6.4 Le préambule {#4.6.4-the-preamble}
+
+Pour un article LaTeX, une section repliée « Preamble » (préambule) donne les lignes que votre document doit charger, une fois, pour que l'export compile, et nomme les moteurs compatibles avec cette combinaison. Son contenu dépend de la notation choisie.
+
+Avec la notation **tipa**, qui compile sous pdfLaTeX, XeLaTeX ou LuaLaTeX :
+
+```
+\usepackage[T3,T1]{fontenc}
+\usepackage{gb4e}   % or langsci-gb4e, for more than three aligned lines
+\usepackage[tone]{tipa}
+```
+
+L'ordre importe, et il n'est pas celui que l'on attendrait : gb4e et tipa définissent tous deux `\|`, et c'est le second chargé qui l'emporte ; tipa est donc chargé après le paquet interlinéaire. La fenêtre le signale sous le préambule lorsque les deux sont sélectionnés.
+
+Avec la notation **Unicode**, qui nécessite XeLaTeX ou LuaLaTeX :
+
+```
+\usepackage{fontspec}
+\setmainfont{Charis SIL}   % or any face with IPA
+\usepackage{gb4e}   % or langsci-gb4e, for more than three aligned lines
+```
+
+Toute police offrant une bonne couverture de l'API peut remplacer Charis SIL.
+
+#### 4.6.5 L'ancien export {#4.6.5-the-legacy-export}
+
+Un lien au bas de la fenêtre permet de basculer vers l'export que TT utilisait auparavant, et un lien permet d'en revenir. Ce choix est mémorisé dans le navigateur que vous utilisez.
+
+Il n'est pas documenté ici et sera supprimé dans une prochaine version. Si vous constatez devoir l'utiliser, merci de [nous indiquer](#8-questions?) ce qui manque à l'export actuel.
 
 ## 5 Recherche de mots {#5-word-search}
 
