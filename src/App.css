@@ -1,15 +1,623 @@
-.ui.text.container img {
+/* ---- Tokens ------------------------------------------------------------
+   The site takes its look from the app it documents: Lato, the same blue
+   for buttons and links, black ink on white paper like the logo. The blue is
+   used with restraint here -- links, the reader's place in the contents, and
+   the app button -- so the manual reads as a document rather than a UI. */
+
+:root {
+  --paper: #ffffff;
+  --paper-2: #f6f6f8;
+  --ink: #15171b;
+  --ink-2: #454a54;
+  --muted: #767b86;
+  --rule: #e4e6ea;
+  --rule-2: #cfd3da;
+  --accent: #2185d0; /* Semantic UI's primary blue, as in the app */
+  --accent-ink: #1678c2;
+  --link: #4183c4;
+  --link-ink: #1e70bf;
+  --sans: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+  --measure: 44rem;
+  --gutter: 4rem;
+}
+
+/* ---- Base --------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--sans);
+}
+
+img {
   max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--link-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--sans);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: 700 0.9rem/1 var(--sans);
+  color: #fff;
+  background: var(--accent);
+  padding: 0.6rem 1.1rem;
+  border-radius: 0.28571429rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 120ms;
+}
+
+.button:hover {
+  color: #fff;
+  background: var(--accent-ink);
+}
+
+.button-small {
+  font-size: 0.8rem;
+  padding: 0.5rem 0.9rem;
+}
+
+.button-large {
+  font-size: 1.05rem;
+  padding: 0.85rem 1.4rem;
+}
+
+/* ---- Site navigation ---------------------------------------------------- */
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+  padding: 0 2rem;
+  min-height: 3.5rem;
+  border-bottom: 1px solid var(--rule);
+  font: 700 0.9rem/1 var(--sans);
+}
+
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-brand:hover {
+  color: var(--ink);
+}
+
+.site-brand svg {
+  display: block;
+}
+
+.site-links {
+  display: flex;
+  gap: 1.5rem;
+  align-self: stretch;
+}
+
+.site-links a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  padding-top: 2px; /* keep the text centred despite the bottom border */
+}
+
+.site-links a:hover {
+  color: var(--ink);
+}
+
+.site-links a[aria-current] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.site-nav-end {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.site-lang {
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.site-lang:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 40rem) {
+  .site-nav {
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .site-links {
+    order: 3;
+    flex-basis: 100%;
+    gap: 1.25rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+
+  .site-links a {
+    padding: 0.5rem 0;
+  }
+}
+
+/* ---- Home --------------------------------------------------------------- */
+
+.home {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 6rem;
+  text-align: center;
+}
+
+.home svg {
+  display: block;
+  margin: 0 auto 1.5rem;
+}
+
+.home-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.home-tagline {
+  font-size: 1.2rem;
+  color: var(--ink-2);
+  margin: 0 0 2.25rem;
+}
+
+.home-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2.5rem 0 0;
+  font: 400 0.9rem var(--sans);
+}
+
+/* ---- Pages -------------------------------------------------------------- */
+
+.page {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 6rem;
+}
+
+.page-title {
+  font-size: 2.25rem;
+  margin: 0 0 1.75rem;
+}
+
+/* ---- Prose (markdown output) -------------------------------------------- */
+
+.prose p,
+.prose ul,
+.prose ol {
+  margin: 0 0 1.1em;
+}
+
+.prose li {
+  margin-bottom: 0.3em;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  scroll-margin-top: 1.5rem;
+}
+
+.prose h2 {
+  font-size: 1.75rem;
+  margin: 3.25rem 0 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.prose h3 {
+  font-size: 1.3rem;
+  margin: 2.25rem 0 0.75rem;
+}
+
+.prose h4 {
+  font-size: 1.05rem;
+  margin: 1.75rem 0 0.6rem;
+}
+
+/* The section number the markdown loader splits off each heading. */
+.secno {
+  display: inline-block;
+  margin-right: 0.6em;
+  font: 700 0.7em/1 var(--sans);
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  vertical-align: 0.1em;
+}
+
+/* A figure in the manual is a paragraph holding its caption and its image. */
+.prose p:has(> img) {
+  font: 400 0.85rem/1.5 var(--sans);
+  color: var(--muted);
+  margin: 1.75rem 0 2rem;
+}
+
+.prose p:has(> img) img {
+  display: block;
+  margin-top: 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.prose pre {
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--rule-2);
+  border-radius: 4px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  font: 0.8rem/1.5 var(--mono);
+  margin: 0 0 1.25em;
+}
+
+.prose :not(pre) > code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0 4px;
+}
+
+.prose blockquote {
+  margin: 0 0 1.1em;
+  padding-left: 1rem;
+  border-left: 3px solid var(--rule-2);
+  color: var(--ink-2);
+}
+
+.prose table {
+  border-collapse: collapse;
+  font-size: 0.95em;
+  margin: 0 0 1.25em;
+}
+
+.prose th,
+.prose td {
+  text-align: left;
+  padding: 0.4em 0.8em;
+  border-bottom: 1px solid var(--rule);
+}
+
+.prose th {
+  font: 700 0.8rem var(--sans);
+}
+
+/* ---- Manual ------------------------------------------------------------- */
+
+.manual {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 16.5rem;
+  grid-template-areas:
+    "title title"
+    "body toc";
+  column-gap: 4rem;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 6rem;
+}
+
+.manual-title {
+  grid-area: title;
+  padding-left: var(--gutter);
+}
+
+.manual-body {
+  grid-area: body;
+  padding-left: var(--gutter);
+  max-width: calc(var(--measure) + var(--gutter));
+}
+
+/* On wide screens the section numbers hang in the gutter beside the text,
+   the same column the contents list keeps them in. */
+.manual-body h2,
+.manual-body h3,
+.manual-body h4 {
+  position: relative;
+}
+
+.manual-body .secno {
+  position: absolute;
+  right: 100%;
+  top: 0.4em;
+  width: var(--gutter);
+  margin: 0;
+  padding-right: 1.25rem;
+  text-align: right;
+  font-size: 0.6em;
+}
+
+.manual-body h4 .secno {
+  font-size: 0.75em;
+  top: 0.22em;
+}
+
+.manual-body h2 .secno {
+  /* the chapter's top rule pushes its text down; keep the number with it */
+  top: calc(1.5rem + 0.4em);
+}
+
+.manual-body h2:first-child .secno {
+  top: 0.4em;
+}
+
+/* Contents: sticky column */
+
+.toc-aside {
+  grid-area: toc;
+  position: sticky;
+  top: 2rem;
+  align-self: start;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  padding-left: 1rem;
+  border-left: 1px solid var(--rule);
+  font: 400 0.85rem/1.35 var(--sans);
+}
+
+.toc-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.toc-list,
+.toc-sub {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc-sub {
+  margin-bottom: 0.4rem;
+}
+
+.toc-link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  column-gap: 0.6rem;
+  padding: 0.28rem 0;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.toc-link:hover {
+  color: var(--ink);
+}
+
+.toc-num {
+  text-align: right;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  padding-top: 0.05em;
+}
+
+.toc-l2 {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.toc-l3 .toc-title {
+  padding-left: 0.75rem;
+}
+
+.toc-l4 .toc-title {
+  padding-left: 1.5rem;
+}
+
+.toc-active {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.toc-active .toc-num {
+  color: var(--accent);
+}
+
+.toc-active::before {
+  content: "";
+  position: absolute;
+  left: calc(-1rem - 1px);
+  top: 0.3rem;
+  bottom: 0.3rem;
+  width: 2px;
+  background: var(--accent);
+}
+
+/* Once the script is watching the scroll, show only the open chapter's
+   subsections. Without it, the prerendered list shows every section. */
+.toc-live .toc-chapter:not(.toc-open) .toc-sub {
+  display: none;
+}
+
+/* Contents: collapsed above the text on narrow screens */
+
+.toc-mobile {
+  display: none;
+  grid-area: mtoc;
+  margin: 0 0 2rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  font: 400 0.9rem/1.4 var(--sans);
+}
+
+.toc-mobile summary {
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.toc-mobile .toc-list {
+  padding: 0 1rem 0.75rem;
+}
+
+.toc-mobile .toc-link {
+  padding: 0.35rem 0;
+}
+
+.toc-mobile .toc-active::before {
+  display: none;
+}
+
+@media (max-width: 64rem) {
+  .manual {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "title"
+      "mtoc"
+      "body";
+    max-width: calc(var(--measure) + 3rem);
+    padding: 2.5rem 1.5rem 6rem;
+  }
+
+  .manual-title,
+  .manual-body {
+    padding-left: 0;
+  }
+
+  .manual-body {
+    max-width: none;
+  }
+
+  .manual-body .secno {
+    position: static;
+    width: auto;
+    padding: 0;
+    margin-right: 0.6em;
+    text-align: left;
+    font-size: 0.7em;
+  }
+
+  .toc-aside {
+    display: none;
+  }
+
+  .toc-mobile {
+    display: block;
+  }
+}
+
+/* ---- Releases ----------------------------------------------------------- */
+
+.releases {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
 }
 
 .release {
-  margin: 10px;
-  padding: 5px;
-  border: solid 1px;
-  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--rule);
 }
 
-/* Figure lightbox: click a manual image to view it full size. */
+.release-date {
+  font: 700 0.85rem/1.6 var(--sans);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  padding-top: 0.35rem;
+}
+
+.release-tag {
+  font: 700 0.85rem/1.6 var(--sans);
+  color: var(--ink);
+  margin: 0 0 0.25rem;
+}
+
+.release-description {
+  margin: 0;
+}
+
+@media (max-width: 40rem) {
+  .release {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+  }
+}
+
+/* ---- Figure lightbox ---------------------------------------------------- */
+/* Click a manual image to view it full size. */
+
 .figure-lightbox-content img {
   cursor: zoom-in;
 }
@@ -26,7 +634,12 @@
   gap: 12px;
   padding: 25px;
   cursor: zoom-out;
-  animation: figure-lightbox-fade 120ms ease-out;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .figure-lightbox-overlay {
+    animation: figure-lightbox-fade 120ms ease-out;
+  }
 }
 
 .figure-lightbox-overlay img {
@@ -38,37 +651,20 @@
 
 .figure-lightbox-caption {
   color: #eee;
-  font-size: 1.1em;
+  font: 400 0.95rem/1.4 var(--sans);
   text-align: center;
 }
 
 @keyframes figure-lightbox-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* ---- Export format page ------------------------------------------------ */
-
-/* The format's example lines are long by nature (a whole document on one
-   line); let them scroll rather than reflow into soup. */
-.ui.text.container pre {
-  background: #f7f8fa;
-  border: 1px solid #e2e5ea;
-  border-left: 3px solid #b8c0cc;
-  border-radius: 4px;
-  padding: 12px 14px;
-  overflow-x: auto;
-  font-size: 0.85em;
-  line-height: 1.5;
-}
-
-.ui.text.container :not(pre) > code {
-  background: #f3f4f7;
-  border: 1px solid #e6e8ec;
-  border-radius: 3px;
-  padding: 0 4px;
-  font-size: 0.92em;
-}
 
 /* Downloads: the schema, the Python reader, the TypeScript types. */
 .toolkit {
@@ -83,44 +679,47 @@
   display: flex;
   flex-direction: column;
   padding: 14px 16px 12px;
-  border: 1px solid #dfe2e8;
+  border: 1px solid var(--rule);
   border-radius: 6px;
   background: #fff;
   color: inherit;
-  transition: border-color 120ms, box-shadow 120ms, transform 120ms;
+  text-decoration: none;
+  transition:
+    border-color 120ms,
+    box-shadow 120ms,
+    transform 120ms;
 }
 
 .toolkit-card:hover {
   color: inherit;
-  border-color: #6ea8d8;
+  border-color: var(--accent);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
   transform: translateY(-1px);
 }
 
 .toolkit-title {
-  font-weight: 700;
+  font: 700 0.95rem/1.4 var(--sans);
   margin-bottom: 2px;
 }
 
 .toolkit-name {
-  font-family: monospace;
-  font-size: 0.8em;
-  color: #7c8494;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
   word-break: break-all;
 }
 
 .toolkit-blurb {
   flex: 1;
   margin: 8px 0 10px;
-  font-size: 0.88em;
+  font-size: 0.95rem;
   line-height: 1.45;
-  color: #4a5162;
+  color: var(--ink-2);
 }
 
 .toolkit-download {
-  font-size: 0.85em;
-  font-weight: 700;
-  color: #3d7ab5;
+  font: 700 0.8rem/1.4 var(--sans);
+  color: var(--link);
 }
 
 .toolkit-download::after {
@@ -131,9 +730,11 @@
 
 .schema-explorer {
   margin: 20px 0 40px;
-  border: 1px solid #dfe2e8;
+  border: 1px solid var(--rule);
   border-radius: 6px;
   overflow: hidden;
+  font-family: var(--sans);
+  font-size: 0.95rem;
 }
 
 .schema-toolbar {
@@ -141,8 +742,8 @@
   align-items: center;
   gap: 8px;
   padding: 10px 14px;
-  background: #f2f4f7;
-  border-bottom: 1px solid #dfe2e8;
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--rule);
 }
 
 .schema-toolbar-title {
@@ -155,18 +756,18 @@
 }
 
 .schema-toolbar-button {
-  border: 1px solid #d3d8e0;
+  border: 1px solid var(--rule-2);
   background: #fff;
   border-radius: 4px;
   padding: 3px 9px;
-  font-size: 0.78em;
-  color: #4a5162;
+  font: 700 0.78em var(--sans);
+  color: var(--ink-2);
   cursor: pointer;
 }
 
 .schema-toolbar-button:hover {
-  border-color: #6ea8d8;
-  color: #2b5f92;
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .schema-legend {
@@ -175,18 +776,18 @@
   flex-wrap: wrap;
   gap: 6px;
   padding: 9px 14px;
-  border-bottom: 1px solid #eceff3;
+  border-bottom: 1px solid var(--rule);
   font-size: 0.85em;
 }
 
 .schema-legend-hint {
-  color: #8b93a3;
+  color: var(--muted);
   font-size: 0.9em;
 }
 
 .schema-root {
   padding: 4px 0 10px;
-  border-bottom: 1px solid #eceff3;
+  border-bottom: 1px solid var(--rule);
 }
 
 .schema-root:last-of-type {
@@ -207,7 +808,7 @@
 }
 
 .schema-root-blurb {
-  color: #8b93a3;
+  color: var(--muted);
   font-size: 0.85em;
 }
 
@@ -229,13 +830,13 @@
 }
 
 .schema-clickable:hover {
-  background: #f6f8fb;
+  background: var(--paper-2);
 }
 
 .schema-caret {
   display: inline-block;
   width: 12px;
-  color: #9aa2b1;
+  color: var(--muted);
   font-size: 0.8em;
   transition: transform 100ms;
 }
@@ -245,24 +846,24 @@
 }
 
 .schema-caret-empty {
-  color: #cfd4dd;
+  color: var(--rule-2);
 }
 
 .schema-name {
-  font-family: monospace;
+  font-family: var(--mono);
   font-size: 0.88em;
   font-weight: 700;
-  color: #2a3140;
+  color: var(--ink);
 }
 
 .schema-name-root {
-  color: #2b5f92;
+  color: var(--accent);
 }
 
 .schema-name-meta {
   font-style: italic;
   font-weight: 400;
-  color: #7c8494;
+  color: var(--muted);
 }
 
 .schema-chip {
@@ -280,7 +881,7 @@
 .schema-chip-teal { background: #ddf1f0; color: #1c6660; }
 .schema-chip-green { background: #e2f3e2; color: #256b2b; }
 .schema-chip-pink { background: #fbe6ee; color: #94305a; }
-.schema-chip-grey { background: #eef0f3; color: #5c6474; font-weight: 400; font-family: monospace; }
+.schema-chip-grey { background: #eef0f3; color: #5c6474; font-weight: 400; font-family: var(--mono); }
 
 .schema-required {
   font-size: 0.7em;
@@ -291,9 +892,9 @@
 }
 
 .schema-ref {
-  font-family: monospace;
+  font-family: var(--mono);
   font-size: 0.74em;
-  color: #8b93a3;
+  color: var(--muted);
 }
 
 .schema-ref::before {
@@ -304,13 +905,13 @@
   margin: 0 14px 6px 46px;
   font-size: 0.84em;
   line-height: 1.45;
-  color: #59606f;
+  color: var(--ink-2);
 }
 
 .schema-children {
   margin-left: 18px;
   padding-left: 10px;
-  border-left: 1px solid #e6e9ee;
+  border-left: 1px solid var(--rule);
 }
 
 .schema-node > .schema-row {
@@ -339,10 +940,10 @@
 .schema-footnote {
   padding: 10px 14px;
   margin: 0;
-  background: #f9fafb;
-  border-top: 1px solid #eceff3;
+  background: var(--paper-2);
+  border-top: 1px solid var(--rule);
   font-size: 0.82em;
-  color: #8b93a3;
+  color: var(--muted);
 }
 
 .schema-footnote code {

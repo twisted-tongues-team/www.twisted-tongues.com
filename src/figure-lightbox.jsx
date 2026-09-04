@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 // margin), click anywhere or press Escape to close. The caption shown is
 // the "Figure N. ..." paragraph preceding the image in the manual, when
 // one exists.
-export function MarkdownWithLightbox({ html }) {
+export function MarkdownWithLightbox({ html, className }) {
   const [figure, setFigure] = useState(null);
 
   const onClick = useCallback((e) => {
@@ -48,7 +48,9 @@ export function MarkdownWithLightbox({ html }) {
   return (
     <>
       <div
-        className="figure-lightbox-content"
+        className={["figure-lightbox-content", className]
+          .filter(Boolean)
+          .join(" ")}
         onClick={onClick}
         dangerouslySetInnerHTML={{ __html: html }}
       />
