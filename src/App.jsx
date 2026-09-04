@@ -1,107 +1,152 @@
+import "@fontsource/lato/400.css";
+import "@fontsource/lato/400-italic.css";
+import "@fontsource/lato/700.css";
 import "./App.css";
-import "semantic-ui-css/semantic.min.css";
-import { Button, Icon, Container, Header, Menu } from "semantic-ui-react";
 import { TwistedTonguesLogo } from "./svgs";
 import AboutRenderedHTML from "./about.md";
-import ManualRenderedHTML from "./manual.md";
-import ManualFrRenderedHTML from "./manual.fr.md";
+import ManualRenderedHTML, { headings as manualHeadings } from "./manual.md";
+import ManualFrRenderedHTML, {
+  headings as manualFrHeadings,
+} from "./manual.fr.md";
 import ReleasesJSON from "./releases.ndjson";
 import ExportFormatRenderedHTML from "./export-format.md";
 import ExportFormatRulesRenderedHTML from "./export-format-rules.md";
 import DevRenderedHTML from "./dev.md";
 import { MarkdownWithLightbox } from "./figure-lightbox";
+import { ManualToc } from "./manual-toc";
 import { SchemaExplorer } from "./schema-explorer";
 
-function MenuOnPage(page, extraItems = []) {
-  const items = [
-    { key: "main", name: "Home", href: "/" },
-    { key: "about", name: "About", href: "/about" },
-    { key: "manual", name: "Manual", href: "/manual" },
-    // "Developers" names the audience rather than one document: the Manual is
-    // for people using the app, this is for people writing code against it.
-    // /dev is the index; everything under it is a page of its own.
-    { key: "dev", name: "Developers", href: "/dev/" },
-    { key: "releases", name: "Releases", href: "/releases" },
-    ...extraItems,
-  ];
+const APP_URL = "https://app.twisted-tongues.com/";
 
+const NAV = [
+  { key: "about", name: "About", href: "/about" },
+  { key: "manual", name: "Manual", href: "/manual" },
+  // "Developers" names the audience rather than one document: the Manual is
+  // for people using the app, this is for people writing code against it.
+  // /dev is the index; everything under it is a page of its own.
+  { key: "dev", name: "Developers", href: "/dev/" },
+  { key: "releases", name: "Releases", href: "/releases" },
+];
+
+function SiteNav({ page, extra }) {
   return (
-    <Menu
-      items={items.map((x) => (x.key == page ? { active: true, ...x } : x))}
-    />
+    <header className="site-nav">
+      <a
+        className="site-brand"
+        href="/"
+        aria-current={page === "main" ? "page" : undefined}
+      >
+        <TwistedTonguesLogo width="28px" />
+        <span>Twisted Tongues</span>
+      </a>
+      <nav className="site-links" aria-label="Site">
+        {NAV.map((x) => (
+          <a
+            key={x.key}
+            href={x.href}
+            aria-current={x.key === page ? "page" : undefined}
+          >
+            {x.name}
+          </a>
+        ))}
+      </nav>
+      <div className="site-nav-end">
+        {extra}
+        <a className="button button-small" href={APP_URL}>
+          Open the app
+        </a>
+      </div>
+    </header>
+  );
+}
+
+function Page({ page, title, extra, children }) {
+  return (
+    <>
+      <SiteNav page={page} extra={extra} />
+      <main className="page">
+        <h1 className="page-title">{title}</h1>
+        {children}
+      </main>
+    </>
   );
 }
 
 export function Main() {
   return (
     <>
-      {MenuOnPage("main")}
-      <Header as="h1" textAlign="center">
-        <TwistedTonguesLogo width="96px" />
-        <br />
-        Twisted Tongues
-      </Header>
-      <Header as="h4" textAlign="center">
-        An online database management tool for linguistic fieldworkers{" "}
-      </Header>
-      <Container textAlign="center">
-        <Button
-          icon
-          labelPosition="right"
-          as="a"
-          href="https://app.twisted-tongues.com/"
-        >
-          Open
-          <Icon name="right arrow" />
-        </Button>
-      </Container>
+      <SiteNav page="main" />
+      <main className="home">
+        <TwistedTonguesLogo width="128px" />
+        <h1 className="home-title">Twisted Tongues</h1>
+        <p className="home-tagline">
+          An online database management tool for linguistic fieldworkers
+        </p>
+        <a className="button button-large" href={APP_URL}>
+          Open Twisted Tongues
+          <span aria-hidden="true">→</span>
+        </a>
+        <p className="home-links">
+          <a href="/manual">Read the manual</a>
+          <a href="/about">About the project</a>
+        </p>
+      </main>
     </>
   );
 }
 
 export function About() {
   return (
+    <Page page="about" title="About">
+      <MarkdownWithLightbox html={AboutRenderedHTML} className="prose" />
+    </Page>
+  );
+}
+
+// The manual in either language: the same layout, with the text column and
+// the table of contents built from that text's own headings.
+function ManualPage({ title, html, headings, tocLabel, otherLanguage }) {
+  return (
     <>
-      {MenuOnPage("about")}
-      <Header as="h1" textAlign="center">
-        About
-      </Header>
-      <Container text>
-        <MarkdownWithLightbox html={AboutRenderedHTML} />
-      </Container>
+      <SiteNav page="manual" extra={otherLanguage} />
+      <main className="manual">
+        <h1 className="page-title manual-title">{title}</h1>
+        <ManualToc headings={headings} label={tocLabel} />
+        <MarkdownWithLightbox html={html} className="prose manual-body" />
+      </main>
     </>
   );
 }
 
 export function Manual() {
   return (
-    <>
-      {MenuOnPage("manual", [
-        { key: "fr", name: "Français", href: "manual-fr", position: "right" },
-      ])}
-      <Header as="h1" textAlign="center">
-        Manual
-      </Header>
-      <Container text>
-        <MarkdownWithLightbox html={ManualRenderedHTML} />
-      </Container>
-    </>
+    <ManualPage
+      title="Manual"
+      html={ManualRenderedHTML}
+      headings={manualHeadings}
+      tocLabel="Contents"
+      otherLanguage={
+        <a className="site-lang" href="/manual-fr" hrefLang="fr" lang="fr">
+          Français
+        </a>
+      }
+    />
   );
 }
 
 export function ManualFr() {
   return (
-    <>
-      {MenuOnPage("manual", [
-        { key: "en", name: "English", href: "manual", position: "right" },
-      ])}
-      <Header as="h1" textAlign="center">
-        Manuel
-      </Header>
-      <Container text>
-        <MarkdownWithLightbox html={ManualFrRenderedHTML} />
-      </Container>
-    </>
+    <ManualPage
+      title="Manuel"
+      html={ManualFrRenderedHTML}
+      headings={manualFrHeadings}
+      tocLabel="Table des matières"
+      otherLanguage={
+        <a className="site-lang" href="/manual" hrefLang="en" lang="en">
+          English
+        </a>
+      }
+    />
   );
 }
 
@@ -150,32 +195,22 @@ function Toolkit() {
 
 export function Dev() {
   return (
-    <>
-      {MenuOnPage("dev")}
-      <Header as="h1" textAlign="center">
-        Developers
-      </Header>
-      <Container text>
-        <MarkdownWithLightbox html={DevRenderedHTML} />
-      </Container>
-    </>
+    <Page page="dev" title="Developers">
+      <MarkdownWithLightbox html={DevRenderedHTML} className="prose" />
+    </Page>
   );
 }
 
 export function ExportFormat() {
   return (
-    <>
-      {MenuOnPage("dev")}
-      <Header as="h1" textAlign="center">
-        The export format
-      </Header>
-      <Container text>
+    <Page page="dev" title="The export format">
+      <div className="prose">
         <MarkdownWithLightbox html={ExportFormatRenderedHTML} />
         <Toolkit />
         <MarkdownWithLightbox html={ExportFormatRulesRenderedHTML} />
         <SchemaExplorer />
-      </Container>
-    </>
+      </div>
+    </Page>
   );
 }
 
@@ -183,23 +218,20 @@ export function Releases() {
   const releases = Array.from(ReleasesJSON);
   releases.reverse();
   return (
-    <>
-      {MenuOnPage("releases")}
-      <Header as="h1" textAlign="center">
-        Past Releases
-      </Header>
-      <Container text>
-        {releases.map((r, i) => {
-          return (
-            <div key={i} id={r.tag} className="release">
-              <h3>{r.tag}</h3>
-              Date: {r.date}
-              <br />
-              {r.description}
+    <Page page="releases" title="Past releases">
+      <ol className="releases">
+        {releases.map((r) => (
+          <li key={r.tag} id={r.tag} className="release">
+            <time className="release-date" dateTime={r.date}>
+              {r.date}
+            </time>
+            <div>
+              <h2 className="release-tag">{r.tag}</h2>
+              <p className="release-description">{r.description}</p>
             </div>
-          );
-        })}
-      </Container>
-    </>
+          </li>
+        ))}
+      </ol>
+    </Page>
   );
 }
