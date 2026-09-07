@@ -250,7 +250,7 @@ Figure 20\. Recherche dans plusieurs pistes.
 
 ### 5.4 Bouton « Context » {#5.4-context-button}
 
-À côté de chaque phrase correspondant à une recherche donnée figure un bouton « Context » (contexte) (cf. figure 18). Un clic sur ce bouton ouvre le passage de cette phrase, déjà défilé jusqu'à elle, et la phrase est mise en surbrillance : l'utilisateur peut ainsi consulter le contexte plus large dans lequel elle a été prononcée. L'adresse de cette page est stable : copiez-la pour envoyer la phrase à un collègue ayant accès au projet, ou conservez-la dans une liste d'exemples, et elle continuera d'ouvrir la même phrase dans les versions futures de TT.
+À côté de chaque phrase correspondant à une recherche donnée figure un bouton « Context » (contexte) (cf. figure 18). Un clic sur ce bouton ouvre le passage de cette phrase, déjà défilé jusqu'à elle, et la phrase est mise en surbrillance : l'utilisateur peut ainsi consulter le contexte plus large dans lequel elle a été prononcée. L'adresse de cette page est permanente. Elle peut être copiée et envoyée à un collègue ayant accès au projet, ou conservée dans une liste d'exemples. Elle ouvrira la même phrase dans les versions futures de TT.
 
 ### 5.5 Rechercher et remplacer {#5.5-find-and-replace}
 

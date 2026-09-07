@@ -250,7 +250,7 @@ Figure 20\. Search Multiple tracks.
 
 ### 5.4 Context button {#5.4-context-button}
 
-Next to each sentence that is a match for a given search, there is a “Context” button (cf. Figure 18). Clicking this button opens the sentence's passage scrolled to that sentence, which is highlighted, so a user can view the larger context in which that sentence was spoken. The address of that page is stable: copy it to send the sentence to a colleague who has access to the project, or keep it in a list of examples, and it will go on opening the same sentence in future versions of TT.
+Next to each sentence that is a match for a given search, there is a “Context” button (cf. Figure 18). Clicking this button opens the sentence's passage scrolled to that sentence, which is highlighted, so a user can view the larger context in which that sentence was spoken. The address of that page is permanent. It can be copied and sent to a colleague who has access to the project, or kept in a list of examples. It will open the same sentence in future versions of TT.
 
 ### 5.5 Find and replace {#5.5-find-and-replace}
 
