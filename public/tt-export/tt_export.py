@@ -21,7 +21,7 @@ track name, T2IPA converted to display form, every string NFD-normalized),
 and `internal`, the app's own state — deliberately unspecified, exposed
 only as an untouched dict for completeness.
 
-Per the format's stability posture (docs/design/save-load-snapshot.md),
+Per the format's stability posture,
 this reader ignores lines and fields it does not recognize, and does not
 gate on the header version beyond checking the doctype — additive format
 changes must not break it.

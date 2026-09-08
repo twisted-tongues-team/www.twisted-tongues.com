@@ -5,8 +5,7 @@
  * A file is UTF-8 ndjson: the first non-empty line is a {@link TTExportHeader},
  * every other non-empty line is a {@link TTExportDocumentLine}. Readers should
  * ignore lines and fields they do not recognize — fields may be added without
- * a version bump. See tt-export.schema.json for the authoritative constraints
- * and docs/design/save-load-snapshot.md for the design.
+ * a version bump. See tt-export.schema.json for the authoritative constraints.
  */
 
 /** First non-empty line of the file. */
