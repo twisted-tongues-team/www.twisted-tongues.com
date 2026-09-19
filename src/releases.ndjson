@@ -16,3 +16,4 @@
 {"date":"2026-09-06","tag":"20260906","description":"A passage now shows all of its sentences on one page, with links to jump to either end; long sentences scroll sideways instead of wrapping. The dictionary builds several times faster on large projects, shows its progress, and no longer freezes the tab while it works. On the projects and passages lists, click a row to open it; renaming, saving to your computer and deleting have moved into a menu on each row, and projects can now be renamed."}
 {"date":"2026-09-06","tag":"20260906.2","description":"Backend database migration for users and projects."}
 {"date":"2026-09-08","tag":"20260908","description":"The app now fits a phone screen: the project bar and account controls fold into menus on narrow screens instead of the page being zoomed out."}
+{"date":"2026-09-19","tag":"20260919","description":"Add Sentence takes you to the sentence it made, and Save Now stays where you clicked it"}
