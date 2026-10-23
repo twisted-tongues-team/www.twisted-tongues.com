@@ -88,7 +88,7 @@ class Export:
     def sentences_for(self, passage: Union[Doc, str]) -> list[Doc]:
         """The sentences of one passage, in id (entry) order.
 
-        Sentence ids are the passage id followed by '-' and a counter,
+        Sentence ids are the passage id followed by '-' and an order key,
         which is the format's one structural invariant across collections.
         """
         passage_id = passage.id if isinstance(passage, Doc) else passage

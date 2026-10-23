@@ -115,7 +115,8 @@ export interface TTMetaData {
 export interface TTExportDocument {
   /**
    * Unique within its collection. A sentence's id is its passage's id
-   * followed by '-' and a 10-digit counter.
+   * followed by '-' and an order key: lowercase letters, digits and `.`,
+   * which sort as plain bytes into the passage's order.
    */
   id: string;
   /** Revision of the source database at export time. */

@@ -161,7 +161,7 @@
           "minLength": 1,
           "maxLength": 512,
           "pattern": "^[^_]",
-          "description": "Document id, unique within its collection. Sentence ids are '<passage id>-<10-digit counter>'."
+          "description": "Document id, unique within its collection. Sentence ids are '<passage id>-<order key>': the key is lowercase letters, digits and '.', and sorts as plain bytes into the passage's order."
         },
         "rev": {
           "type": "string",
