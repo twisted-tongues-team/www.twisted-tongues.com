@@ -19,3 +19,4 @@
 {"date":"2026-09-19","tag":"20260919","description":"Add Sentence takes you to the sentence it made, and Save Now stays where you clicked it"}
 {"date":"2026-10-20","tag":"20261020.3","description":"Linguistic data is now shown in Doulos SIL, a typeface drawn for IPA, so letters and stacked diacritics look the same on every computer rather than depending on the fonts each one has installed."}
 {"date":"2026-10-23","tag":"20261023.1","description":"Sentences are numbered now — (1), (2), (3) — on the passage page and beside every search result."}
+{"date":"2026-10-24","tag":"20261024.2","description":"Sentences can now be deleted from passages, and inserted in the middle of a passage."}
