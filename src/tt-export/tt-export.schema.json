@@ -298,7 +298,7 @@
     },
     "metaData": {
       "type": "object",
-      "description": "Project-level documents. Track templates carry kind/name/tracks; a meta document of no known kind exports an empty data shell (its content is in `internal` only).",
+      "description": "Project-level documents, told apart by their id prefix. `template_` is a track template and carries kind/name/tracks. `deleted_` records that a sentence was deleted and that its id will never be reused; it carries nothing here, because its own id names the sentence and `created_date`/`creator` say when it went and who removed it. A meta document of any kind you do not recognise carries an empty data shell too, so unknown kinds can simply be skipped.",
       "properties": {
         "kind": {
           "const": "template"

@@ -32,8 +32,9 @@ export interface TTExportHeader {
 }
 
 /**
- * meta holds project-level documents such as track templates; passages and
- * sentences hold the linguistic data.
+ * meta holds project-level documents such as track templates and spent
+ * sentence ids; passages and sentences hold the linguistic data. A meta
+ * document's kind is its id prefix.
  */
 export type TTCollection = 'meta' | 'passages' | 'sentences';
 
@@ -98,9 +99,13 @@ export interface TTSentenceData {
 }
 
 /**
- * `data` of a meta document. Track templates carry kind/name/tracks; a
- * meta document of no known kind exports an empty data shell (its content
- * is in `internal` only).
+ * `data` of a meta document. Track templates (`template_` ids) carry
+ * kind/name/tracks. A `deleted_<passage id>-<sentence id>` id is a sentence
+ * id that is spent: the sentence it named is gone and no later one is given
+ * that id, so a link or a citation naming it still names nothing. Its `data`
+ * is empty -- the id says which sentence, and `created_date`/`creator` say
+ * when it went and who removed it. Any other meta document is a kind this
+ * file's writer knew and you need not: skip it, or read its `internal`.
  */
 export interface TTMetaData {
   kind?: 'template';
