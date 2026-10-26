@@ -104,7 +104,7 @@ In the Passages tab, click a passage to view and edit the data in it. Below the 
 
 Sentences are numbered down the left of the passage — (1), (2), (3) — and each row also shows a permanent id. The numbers change as sentences are added or removed above them; the id does not, so a Context link (section 5.4) always opens the same sentence.
 
-Each sentence's row carries a “More…” menu, holding the operations needed less often. “Insert new above” opens a row to type a new sentence into, immediately above that one. “Duplicate here” opens a row below it holding a copy of the sentence, and “Duplicate at end” does the same at the bottom of the passage; either way, nothing is added to the passage until you save the row. “Delete…” removes the sentence, after asking you to confirm. A sentence with unsaved changes cannot be copied or deleted: save it first. Readers see no menu.
+Each sentence's row carries a “More…” menu, holding the operations needed less often. “Insert new above” opens a row to type a new sentence into, immediately above that one. “Duplicate here” opens a row below it holding a copy of the sentence, and “Duplicate at end” does the same at the bottom of the passage. “Delete…” removes the sentence, after asking you to confirm. A sentence with unsaved changes cannot be copied or deleted: save it first. Readers see no menu.
 
 Figure 14\. The row a sentence is typed into, at the end of an empty passage.  
 ![](images/figure_014_add_sentence_empty.png)
